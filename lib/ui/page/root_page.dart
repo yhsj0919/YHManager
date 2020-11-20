@@ -31,7 +31,7 @@ class RootPage extends GetView<RootController> {
             margin: EdgeInsets.all(0),
             padding: EdgeInsets.all(0),
             child: Container(
-              color: Colors.blue,
+              color: Theme.of(Get.context).accentColor,
             ),
           ),
           Obx(() => ExpansionPanelList(
@@ -45,7 +45,7 @@ class RootPage extends GetView<RootController> {
                           return ListTile(
                             leading: Icon(
                               item.value.icon,
-                              color: isExpanded ? Colors.blue : Colors.grey,
+                              color: isExpanded ? Theme.of(context).accentColor : Colors.grey,
                             ),
                             title: AppText.subtitle('${item.value.name}'),
                           );

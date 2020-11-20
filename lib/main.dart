@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:manager/theme/app_theme.dart';
+import 'package:manager/theme/app_string.dart';
 
 import 'route/routes.dart';
 
@@ -21,12 +23,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Microsoft YaHei',
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightTheme,
       getPages: Routes.routes,
       initialRoute: Routes.Login,
+      translations: AppString(),
+      locale: Locale('zh', 'CN'),
+      fallbackLocale: Locale('en', 'US'),
     );
   }
 }

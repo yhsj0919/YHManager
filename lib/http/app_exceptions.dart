@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 /// 自定义异常
@@ -11,7 +13,7 @@ class AppException implements Exception {
   ]);
 
   String toString() {
-    return "$_code$_message";
+    return "$_code :$_message";
   }
 
   factory AppException.create(DioError error) {
@@ -98,6 +100,9 @@ class AppException implements Exception {
             return AppException(-1, "未知错误");
           }
         }
+        break;
+      case DioErrorType.DEFAULT:
+        return BadRequestException(-1, "网络异常");
         break;
       default:
         {

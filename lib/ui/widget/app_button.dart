@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'app_shape.dart';
 import 'app_text.dart';
+import 'argon_buttons_flutter.dart';
 
 class AppButton {
   static Widget button(String text, VoidCallback onPressed,
-      {double width, Color background: Colors.blue, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
+      {double width, double height, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
     return Container(
       width: width,
+      height: height,
       margin: margin,
-      child: MaterialButton(
+      child: RaisedButton(
         elevation: 2,
         focusElevation: 2,
         disabledElevation: 2,
@@ -18,10 +21,30 @@ class AppButton {
         splashColor: Colors.black12,
         onPressed: onPressed,
         child: AppText.button(text),
-        padding: padding ?? EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         color: background,
         textColor: textColor,
         shape: shape ?? AppShape.circular(),
+      ),
+    );
+  }
+
+  static Widget button2(String text,
+      {double width, double height: 50, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, double radius: 50, ArgonButtonTap onTap}) {
+    return Container(
+      margin: margin,
+      child: ArgonButton(
+        width: width,
+        height: height,
+        elevation: 2,
+        focusElevation: 2,
+        disabledElevation: 2,
+        borderRadius: radius,
+        loader: Container(padding: EdgeInsets.all(10), child: SpinKitRotatingCircle(color: Colors.white)),
+        highlightColor: Colors.black12,
+        splashColor: Colors.black12,
+        onTap: onTap,
+        child: AppText.button(text, color: textColor),
+        color: background ?? Colors.blue,
       ),
     );
   }

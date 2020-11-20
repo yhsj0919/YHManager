@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:manager/ui/binding/detail_binding.dart';
+import 'package:manager/ui/binding/home_binding.dart';
 import 'package:manager/ui/binding/login_binding.dart';
+import 'package:manager/ui/binding/permission_binding.dart';
 import 'package:manager/ui/binding/root_binding.dart';
 
-import 'package:manager/ui/page/detail_page.dart';
+import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
+import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
 
 class Routes {
@@ -15,6 +17,7 @@ class Routes {
   static const String Login = "/login";
   static const String Home = "/home";
   static const String Detail = "/detail";
+  static const String Permission = "/permission";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage(), binding: LoginBinding()),
@@ -27,10 +30,13 @@ class Routes {
 
     switch (route) {
       case Home:
-        return GetPageRoute(page: () => DetailPage(), binding: DetailBinding(), parameter: arguments);
+        return GetPageRoute(page: () => HomePage(), binding: HomeBinding(), parameter: arguments);
         break;
       case Detail:
-        return GetPageRoute(page: () => DetailPage(), binding: DetailBinding(), parameter: arguments);
+        return GetPageRoute(page: () => HomePage(), binding: HomeBinding(), parameter: arguments);
+        break;
+      case Permission:
+        return GetPageRoute(page: () => PermissionPage(), binding: PermissionBinding(), parameter: arguments);
         break;
     }
   }

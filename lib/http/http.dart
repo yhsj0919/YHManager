@@ -44,7 +44,7 @@ class Http {
 
       // 添加拦截器
       dio.interceptors.add(ErrorInterceptor());
-      dio.interceptors.add(LogInterceptor());
+      dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
     }
   }
 

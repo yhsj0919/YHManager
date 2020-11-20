@@ -11,7 +11,7 @@ class ErrorInterceptor extends Interceptor {
     AppException appException = AppException.create(err);
     // 错误提示
     debugPrint('DioError===: ${appException.toString()}');
-    err.error = appException;
-    return super.onError(err);
+
+    return Future.error(appException);
   }
 }

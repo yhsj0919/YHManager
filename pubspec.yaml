@@ -33,6 +33,7 @@ dependencies:
   dio_cookie_manager: ^1.0.0
   path_provider: ^1.6.24
   shared_preferences: ^0.5.12+4
+  flutter_spinkit: ^4.1.2
 
 dev_dependencies:
   flutter_test:
