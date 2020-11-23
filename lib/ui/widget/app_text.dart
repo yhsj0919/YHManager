@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppText {
+  AppText._();
+
   static Widget display4(String data, {double size = 112, Color color}) {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
@@ -58,12 +60,13 @@ class AppText {
                 Container(
                   width: 8,
                 ),
-                Flexible(child:Text(
-                  data,
-                  style: TextStyle(fontSize: size, color: color),
-                  maxLines: 1,
-                ) ,)
-
+                Flexible(
+                  child: Text(
+                    data,
+                    style: TextStyle(fontSize: size, color: color),
+                    maxLines: 1,
+                  ),
+                )
               ],
             )
           : null,
@@ -72,26 +75,26 @@ class AppText {
 
   static Widget textField({
     String text,
-    TextEditingController controller,
     ValueChanged<String> onChanged,
     TextInputType inputType,
     TextStyle style,
     bool enable,
+    String label,
     String hint,
     String error,
     String help,
   }) {
-    controller?.text = text ?? '';
-    return TextField(
-      controller: controller ?? TextEditingController(text: text ?? ''),
+    return TextFormField(
+      initialValue: text ?? '',
       onChanged: onChanged,
       autofocus: false,
       focusNode: FocusNode(canRequestFocus: false),
       keyboardType: inputType,
       style: style ?? TextStyle(fontSize: 18, color: Color(0xff1f98f5)),
-      maxLines: 3,
+      maxLines: 1,
       enabled: enable,
       decoration: InputDecoration(
+        labelText: label,
         border: OutlineInputBorder(borderSide: BorderSide()),
         hintText: hint ?? '',
         hintStyle: TextStyle(color: Colors.grey),

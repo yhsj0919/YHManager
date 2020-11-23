@@ -14,7 +14,7 @@ class RootPage extends GetView<RootController> {
       drawer: _drawer(),
       body: Navigator(
         key: Get.nestedKey(Routes.Key),
-        initialRoute: Routes.Home,
+        initialRoute: Routes.Permission,
         onGenerateRoute: (setting) {
           return Routes.getRoute(setting);
         },

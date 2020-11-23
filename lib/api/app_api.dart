@@ -8,7 +8,7 @@ class AppApi {
   }
 
   static Future<AppRespEntity<T>> _post<T>(String path, {Map<String, String> params}) async {
-    HttpUtils.init(baseUrl: 'http://127.0.0.1:8080');
+    HttpUtils.init(baseUrl: 'http://192.168.3.58:8080');
 
     try {
       var resp = await HttpUtils.post(path, data: params);

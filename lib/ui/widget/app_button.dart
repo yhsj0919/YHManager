@@ -7,6 +7,8 @@ import 'app_text.dart';
 import 'argon_buttons_flutter.dart';
 
 class AppButton {
+  AppButton._();
+
   static Widget button(String text, VoidCallback onPressed,
       {double width, double height, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
     return Container(

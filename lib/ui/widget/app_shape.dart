@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppShape {
+  AppShape._();
+
   static ShapeBorder circular() {
     return RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
