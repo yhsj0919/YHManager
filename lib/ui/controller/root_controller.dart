@@ -4,7 +4,7 @@ import 'package:manager/entity/menu_entity.dart';
 
 class RootController extends GetxController {
   final menus = [
-    MenuEntity(icon: Icons.computer, name: "系统设置", child: [MenuEntity(icon: Icons.build, name: '设备管理'), MenuEntity(icon: Icons.print, name: '打印设置')]).obs,
+    MenuEntity(icon: Icons.computer, name: "系统设置", child: [MenuEntity(icon: Icons.build, name: '设备管理'), MenuEntity(icon: Icons.menu, name: '打印设置')]).obs,
     MenuEntity(icon: Icons.settings, name: '其他设置', child: []).obs
   ].obs;
   void openMenu(index, isExpanded) {

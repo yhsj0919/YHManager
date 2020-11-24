@@ -6,6 +6,7 @@ import 'package:manager/ui/widget/blur_rect_widget.dart';
 import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/argon_buttons_flutter.dart';
+import 'package:manager/utils/app_validator.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override
@@ -62,12 +63,7 @@ class LoginPage extends GetView<LoginController> {
           labelText: 'userName'.tr,
         ),
         validator: (value) {
-          var emailReg = RegExp(r"^[1][3,4,5,7,8][0-9]{9}$");
-          if (!emailReg.hasMatch(value)) {
-            return 'userNameTip'.tr;
-          } else {
-            return null;
-          }
+          return phoneValidator(value, 'userNameTip'.tr);
         },
         onSaved: (String value) => controller.userName.value = value,
       ),
@@ -83,11 +79,7 @@ class LoginPage extends GetView<LoginController> {
         onSaved: (String value) => controller.passWord.value = value,
         obscureText: controller.isObscure.value,
         validator: (String value) {
-          if (value.isEmpty) {
-            return 'passWordTip'.tr;
-          } else {
-            return null;
-          }
+          return emptyValidator(value, 'passWordTip'.tr);
         },
         decoration: InputDecoration(
             border: OutlineInputBorder(borderSide: BorderSide()),

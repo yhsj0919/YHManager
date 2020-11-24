@@ -9,8 +9,8 @@ import 'argon_buttons_flutter.dart';
 class AppButton {
   AppButton._();
 
-  static Widget button(String text, VoidCallback onPressed,
-      {double width, double height, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
+  static Widget button(String text,
+      {VoidCallback onTap, double width, double height, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
     return Container(
       width: width,
       height: height,
@@ -21,7 +21,7 @@ class AppButton {
         disabledElevation: 2,
         highlightColor: Colors.black12,
         splashColor: Colors.black12,
-        onPressed: onPressed,
+        onPressed: onTap,
         child: AppText.button(text),
         color: background,
         textColor: textColor,
@@ -51,8 +51,10 @@ class AppButton {
     );
   }
 
-  static Widget textButton(String text, VoidCallback onPressed, {Color background, Color textColor, EdgeInsetsGeometry margin}) {
+  static Widget textButton(String text, VoidCallback onPressed, {double width, double height, Color background, Color textColor, EdgeInsetsGeometry margin}) {
     return Container(
+      height: height,
+      width: width,
       margin: margin,
       child: TextButton(
         onPressed: onPressed,

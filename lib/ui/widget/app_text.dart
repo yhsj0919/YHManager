@@ -76,6 +76,9 @@ class AppText {
   static Widget textField({
     String text,
     ValueChanged<String> onChanged,
+    FormFieldSetter<String> onSaved,
+    FormFieldValidator<String> validator,
+    AutovalidateMode autoValidateMode,
     TextInputType inputType,
     TextStyle style,
     bool enable,
@@ -87,6 +90,9 @@ class AppText {
     return TextFormField(
       initialValue: text ?? '',
       onChanged: onChanged,
+      onSaved: onSaved,
+      validator: validator,
+      autovalidateMode: autoValidateMode,
       autofocus: false,
       focusNode: FocusNode(canRequestFocus: false),
       keyboardType: inputType,

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/menu_entity.dart';
 import 'package:manager/ui/controller/permission_controller.dart';
+import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/app_widget.dart';
 import 'package:manager/utils/app_ext.dart';
+import 'package:manager/utils/app_validator.dart';
 
 class PermissionPage extends GetView<PermissionController> {
   @override
@@ -46,7 +48,6 @@ class PermissionPage extends GetView<PermissionController> {
               child: Icon(Icons.add),
               onPressed: () {
                 _addDialog();
-                controller.addMenu(MenuEntity(id: '1', name: "测试", icon: Icons.menu, expanded: false));
               },
             ),
           ),
@@ -61,29 +62,80 @@ class PermissionPage extends GetView<PermissionController> {
   }
 
   void _addDialog() {
+    var menuEntity = MenuEntity();
+
     var dialog = Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       width: 400,
       child: Form(
+        key: controller.formKey,
         child: Column(
           children: [
-            AppText.textField(label: '父级'),
+            AppText.textField(
+                label: '父级',
+                onSaved: (value) {
+                  menuEntity.parent = value;
+                }),
             AppWidget.empty(height: 16),
-            AppText.textField(label: "名称"),
+            AppText.textField(
+                label: "名称",
+                autoValidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  return emptyValidator(value, "名称不可为空");
+                },
+                onChanged: (value) {
+                  menuEntity.name = value;
+                }),
             AppWidget.empty(height: 16),
-            AppText.textField(label: '图标'),
+            AppText.textField(label: '图标', onChanged: (value) {}),
             AppWidget.empty(height: 16),
-            AppText.textField(label: '类型'),
+            AppText.textField(
+                label: '类型',
+                inputType: TextInputType.number,
+                autoValidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  return emptyValidator(value, "类型不可为空");
+                },
+                onChanged: (value) {
+                  menuEntity.type = value as int;
+                }),
             AppWidget.empty(height: 16),
-            AppText.textField(label: '权重'),
+            AppText.textField(
+                label: '权重',
+                autoValidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  return emptyValidator(value, "权重不可为空");
+                },
+                inputType: TextInputType.number,
+                onChanged: (value) {
+                  menuEntity.weight = value as int;
+                }),
             AppWidget.empty(height: 16),
-            AppText.textField(label: '路径'),
+            AppText.textField(
+                label: '路径',
+                autoValidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  return emptyValidator(value, "路径不可为空");
+                },
+                onChanged: (value) {
+                  menuEntity.path = value;
+                }),
             AppWidget.empty(height: 16),
           ],
         ),
       ),
     );
 
-    Get.defaultDialog(title: '添加', content: dialog, radius: 10);
+    Get.defaultDialog(
+      title: '添加',
+      barrierDismissible: false,
+      content: dialog,
+      radius: 10,
+      cancel: AppButton.textButton("取消", Get.back, width: 80, height: 40),
+      confirm: AppButton.button2("确定", width: 80, height: 40, onTap: (startLoading, stopLoading, btnState) {
+        controller.addMenu(menuEntity);
+        Get.back();
+      }),
+    );
   }
 }
