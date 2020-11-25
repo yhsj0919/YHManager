@@ -30,17 +30,9 @@ class Http {
           // Http请求头.
           headers: {});
 
-      if (kIsWeb) {
-        options.extra['withCredentials'] = true;
-        dio = Dio(options);
-      } else {
-        dio = new Dio(options);
-        //本地管理cookie
-        getApplicationDocumentsDirectory().then((value) {
-          String appDocPath = value.path;
-          dio.interceptors.add(CookieManager(PersistCookieJar(dir: appDocPath)));
-        });
-      }
+      options.extra['withCredentials'] = true;
+
+      dio = Dio(options);
 
       // 添加拦截器
       dio.interceptors.add(ErrorInterceptor());
@@ -54,7 +46,7 @@ class Http {
   /// [connectTimeout] 连接超时赶时间
   /// [receiveTimeout] 接收超时赶时间
   /// [interceptors] 基础拦截器
-  void init({String baseUrl, int connectTimeout, int receiveTimeout, List<Interceptor> interceptors}) {
+  Future<void> init({String baseUrl, int connectTimeout, int receiveTimeout, List<Interceptor> interceptors}) async {
     dio.options = dio.options.merge(
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
@@ -65,12 +57,20 @@ class Http {
     }
   }
 
+
+  Future<CookieManager> getCookieManager() async {
+    //本地管理cookie
+    var cookiePath = await getApplicationDocumentsDirectory();
+    return CookieManager(PersistCookieJar(dir: cookiePath.path));
+  }
+
+
   /// 设置headers
   void setHeaders(Map<String, dynamic> map) {
     dio.options.headers.addAll(map);
   }
 
-  /*
+/*
    * 取消请求
    *
    * 同一个cancel token 可以用于多个请求，当一个cancel token取消时，所有使用该cancel token的请求都会被取消。
