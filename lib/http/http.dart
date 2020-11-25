@@ -57,13 +57,11 @@ class Http {
     }
   }
 
-
   Future<CookieManager> getCookieManager() async {
     //本地管理cookie
     var cookiePath = await getApplicationDocumentsDirectory();
     return CookieManager(PersistCookieJar(dir: cookiePath.path));
   }
-
 
   /// 设置headers
   void setHeaders(Map<String, dynamic> map) {
