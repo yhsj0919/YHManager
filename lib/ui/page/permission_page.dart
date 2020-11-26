@@ -17,27 +17,37 @@ class PermissionPage extends GetView<PermissionController> {
           width: 400.0.isMobile(def: context.width),
           child: Scaffold(
             body: SingleChildScrollView(
-              child: Obx(
-                () => ExpansionPanelList(
+              child: controller.obx(
+                (menus) => ExpansionPanelList(
                   expansionCallback: controller.openMenu,
-                  children: controller.menus
+                  children: menus
                       .map(
                         (item) => ExpansionPanel(
-                          isExpanded: item.value.expanded,
+                          isExpanded: item.expanded ?? false,
                           headerBuilder: (BuildContext context, bool isExpanded) {
                             return ListTile(
                               leading: Icon(
-                                item.value.icon,
+                                Icons.api,
                                 color: isExpanded ? Theme.of(context).accentColor : Colors.grey,
                               ),
-                              title: AppText.subtitle('${item.value.name}'),
+                              title: AppText.subtitle('${item.name}'),
                               trailing: IconButton(
                                 icon: Icon(Icons.add),
                                 onPressed: () {},
                               ),
                             );
                           },
-                          body: Container(),
+                          body: ListView.builder(
+                            padding: EdgeInsets.only(left: 20),
+                            shrinkWrap: true,
+                            itemCount: item.child?.length ?? 0,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(
+                                leading: Icon(Icons.subdirectory_arrow_right),
+                                title: Text('${item?.child[index]?.name}'),
+                              );
+                            },
+                          ),
                         ),
                       )
                       .toList(),

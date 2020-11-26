@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:manager/api/app_api.dart';
 import 'package:manager/entity/menu_entity.dart';
 
-class PermissionController extends GetxController with StateMixin<MenuEntity> {
+class PermissionController extends GetxController with StateMixin<List<MenuEntity>> {
   final formKey = GlobalKey<FormState>();
-
-  final menus = [].obs;
+  List<MenuEntity> menus = List<MenuEntity>();
 
   @override
   void onInit() {
@@ -15,11 +14,14 @@ class PermissionController extends GetxController with StateMixin<MenuEntity> {
   }
 
   Future getPermission() {
+    change(menus, status: RxStatus.loading());
+
     return AppApi.getPermission().then((value) {
-      change(value, status: RxStatus.success());
-    }).catchError((error) {
-      change(null, status: RxStatus.error());
-    });
+      menus.clear();
+      menus.addAll(value.data);
+
+      change(menus, status: RxStatus.success());
+    }).catchError((error) {});
   }
 
   Future addMenu(MenuEntity menu) {
@@ -27,7 +29,7 @@ class PermissionController extends GetxController with StateMixin<MenuEntity> {
       ///只有输入的内容符合要求通过才会到达此处
       formKey.currentState.save();
 
-      menus.add(menu.obs);
+      menus.add(menu);
       return Future.value("");
     } else {
       return Future.value("");
@@ -41,14 +43,12 @@ class PermissionController extends GetxController with StateMixin<MenuEntity> {
   void openMenu(index, isExpanded) {
     menus.forEach((menu) {
       if (menus.indexOf(menu) == index) {
-        menu.update((val) {
-          val.expanded = !isExpanded;
-        });
+        menu.expanded = !isExpanded;
       } else {
-        menu.update((val) {
-          val.expanded = false;
-        });
+        menu.expanded = false;
       }
     });
+
+    change(menus, status: RxStatus.success());
   }
 }

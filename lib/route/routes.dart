@@ -9,6 +9,7 @@ import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
 import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
+import 'package:manager/ui/widget/app_text.dart';
 
 class Routes {
   static const Key = 1;
@@ -37,6 +38,9 @@ class Routes {
         break;
       case Permission:
         return GetPageRoute(page: () => PermissionPage(), binding: PermissionBinding(), parameter: arguments);
+        break;
+      default:
+        return GetPageRoute(page: () => Scaffold(body: Center(child: AppText.display1('页面不存在'))));
         break;
     }
   }

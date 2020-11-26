@@ -40,27 +40,30 @@ class RootPage extends GetView<RootController> {
                     .map(
                       (item) => ExpansionPanel(
                         canTapOnHeader: true,
-                        isExpanded: item.value.expanded,
+                        isExpanded: item.value.expanded ?? false,
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return ListTile(
                             leading: Icon(
-                              item.value.icon,
+                              Icons.dashboard,
                               color: isExpanded ? Theme.of(context).accentColor : Colors.grey,
                             ),
                             title: AppText.subtitle('${item.value.name}'),
                           );
                         },
-                        body: Column(
-                          children: item.value.child
-                              ?.map(
-                                (e) => ListTile(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    leading: Icon(e.icon),
-                                    title: AppText.subtitle('${e.name}')),
-                              )
-                              ?.toList(),
+                        body: ListView.builder(
+                          padding: EdgeInsets.only(left: 20),
+                          shrinkWrap: true,
+                          itemCount: item.value.child?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListTile(
+                              onTap: () {
+                                Get.offAndToNamed('${item.value?.child[index]?.path}', id: Routes.Key);
+                                Get.back();
+                              },
+                              leading: Icon(Icons.subdirectory_arrow_right),
+                              title: Text('${item.value?.child[index]?.name}'),
+                            );
+                          },
                         ),
                       ),
                     )

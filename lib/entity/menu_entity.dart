@@ -1,31 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:manager/generated/json/base/json_convert_content.dart';
 
-class MenuEntity {
-  String id;
-
-  //父级
-  String parent;
-
-  //名称
-  String name;
-
-  //类型，0，菜单，1，接口
-  int type;
-
-  //权重，用于排序
-  int weight;
-
-  //路径
-  String path;
-
-  //图标
-  IconData icon;
-
-  //展开
-  bool expanded;
-
-  //子集
-  List<MenuEntity> child = List();
-
-  MenuEntity({this.id, this.parent, this.type, this.path, this.weight, this.icon, this.name, this.expanded = false, this.child});
+class MenuEntity with JsonConvert<MenuEntity> {
+	String id;
+	String parent;
+	String name;
+	int type;
+	int weight;
+	String path;
+	int icon;
+	bool enable;
+	List<MenuEntity> child;
+	int deleted;
+	String creatorId;
+	bool expanded;
 }
