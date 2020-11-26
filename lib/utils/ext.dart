@@ -10,6 +10,21 @@ extension WidgetExtension on Widget {
       return this;
     }
   }
+
+  Widget showBy(bool show) {
+    if (show) {
+      return this;
+    } else {
+      return Container();
+    }
+  }
+
+  Widget expanded({int flex = 1}) {
+    return Expanded(
+      flex: flex,
+      child: this,
+    );
+  }
 }
 
 extension IntExtension on num {

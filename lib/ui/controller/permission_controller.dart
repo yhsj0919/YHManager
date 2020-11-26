@@ -29,8 +29,12 @@ class PermissionController extends GetxController with StateMixin<List<MenuEntit
       ///只有输入的内容符合要求通过才会到达此处
       formKey.currentState.save();
 
-      menus.add(menu);
-      return Future.value("");
+      return AppApi.addPermission(param: menu.toJson()).then((value) {
+        menus.clear();
+        menus.addAll(value.data);
+        change(menus, status: RxStatus.success());
+        Get.back();
+      });
     } else {
       return Future.value("");
     }
