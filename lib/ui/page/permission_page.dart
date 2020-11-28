@@ -12,24 +12,32 @@ import 'package:manager/utils/app_validator.dart';
 class PermissionPage extends GetView<PermissionController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: controller.obx(
-            (menus) => ExpansionPanelList(
-              expansionCallback: controller.openMenu,
-              children: menus.map((item) => _buildExpansionPanel(item)).toList(),
+    return Row(children: [
+      Container(
+        width: 400.0.isMobile(def: context.width),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: controller.obx(
+              (menus) => ExpansionPanelList(
+                expansionCallback: controller.openMenu,
+                children: menus.map((item) => _buildExpansionPanel(item)).toList(),
+              ),
             ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            _addDialog();
-          },
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              _addDialog();
+            },
+          ),
         ),
       ),
-    );
+      Container(
+        width: 1,
+        height: context.height,
+        color: Colors.black12,
+      ).isMobile(def: Container())
+    ]);
   }
 
   //可展开列表
@@ -47,7 +55,7 @@ class PermissionPage extends GetView<PermissionController> {
   Widget _buildTitle(BuildContext context, bool isExpanded, MenuEntity menu) {
     return ListTile(
         leading: Icon(Icons.api, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
-        title:  _buildInfoTable(menu).isMobile(def: AppText.title('${menu?.name}')),
+        title: AppText.title('${menu?.name}'),
         trailing: IconButton(
           icon: Icon(Icons.add),
           onPressed: () {
@@ -70,11 +78,11 @@ class PermissionPage extends GetView<PermissionController> {
 
   //子菜单标题
   Widget _buildChildTitle(MenuEntity menu) {
-    return ListTile(leading: Icon(Icons.subdirectory_arrow_right), title: _buildInfoTable(menu).isMobile(def: AppText.title('${menu?.name}')));
+    return ListTile(leading: Icon(Icons.subdirectory_arrow_right), title: AppText.title('${menu?.name}'));
   }
 
   Widget _buildInfoTable(MenuEntity menu) {
-   return Row(children: [
+    return Row(children: [
       AppText.title(menu.name).expanded(),
       AppText.title('${menu.type}').expanded(),
       AppText.title('${menu.weight}').expanded(),

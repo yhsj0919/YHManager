@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 /// Map Json扩展方法
@@ -22,6 +23,24 @@ extension WidgetExtension on Widget {
   Widget expanded({int flex = 1}) {
     return Expanded(
       flex: flex,
+      child: this,
+    );
+  }
+
+  Widget keyListener({ValueChanged<RawKeyEvent> onkey}) {
+    return RawKeyboardListener(
+      focusNode: FocusNode(canRequestFocus: false),
+      onKey: (RawKeyEvent event) {
+        if (event is RawKeyUpEvent) {
+          if (event.logicalKey == LogicalKeyboardKey.enter || event.logicalKey == LogicalKeyboardKey.select) {
+            print('>>>>>>>>>点击了确定>>>>>>>>>');
+          } else {
+            print('>>>>>>>>>点击了>>${event.logicalKey}>>>>>>>');
+          }
+
+          onkey?.call(event);
+        }
+      },
       child: this,
     );
   }
