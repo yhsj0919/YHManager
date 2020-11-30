@@ -14,7 +14,7 @@ class PermissionPage extends GetView<PermissionController> {
   Widget build(BuildContext context) {
     return Row(children: [
       Container(
-        width: 400.0.isMobile(def: context.width),
+        width: 600.0.isMobile(def: context.width),
         child: Scaffold(
           body: SingleChildScrollView(
             child: controller.obx(
@@ -54,14 +54,35 @@ class PermissionPage extends GetView<PermissionController> {
   //父级标题
   Widget _buildTitle(BuildContext context, bool isExpanded, MenuEntity menu) {
     return ListTile(
-        leading: Icon(Icons.api, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
-        title: AppText.title('${menu?.name}'),
-        trailing: IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () {
-            _addDialog(parent: menu);
-          },
-        ));
+      leading: Icon(Icons.api, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
+      title: Row(
+        children: [
+          Expanded(flex: 1, child: AppText.title('${menu?.name}')),
+        ],
+      ),
+      subtitle: AppText.subtitle('${menu?.path}'),
+      trailing: Container(
+        width: 100,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.edit),
+              onPressed: () {},
+            ),
+            IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.add),
+              onPressed: () {
+                _addDialog(parent: menu);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   //子菜单
@@ -78,7 +99,25 @@ class PermissionPage extends GetView<PermissionController> {
 
   //子菜单标题
   Widget _buildChildTitle(MenuEntity menu) {
-    return ListTile(leading: Icon(Icons.subdirectory_arrow_right), title: AppText.title('${menu?.name}'));
+    return ListTile(
+      leading: Icon(Icons.subdirectory_arrow_right),
+      title: AppText.title('${menu?.name}'),
+      subtitle: AppText.subtitle('${menu?.path}'),
+      trailing: Container(
+        width: 100,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.edit),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildInfoTable(MenuEntity menu) {

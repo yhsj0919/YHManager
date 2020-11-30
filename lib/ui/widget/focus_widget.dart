@@ -4,8 +4,9 @@ typedef FocusWidgetBuild = Widget Function(BuildContext context, FocusNode focus
 
 class FocusWidget extends StatefulWidget {
   FocusWidgetBuild build;
+  bool autofocus;
 
-  FocusWidget({@required this.build});
+  FocusWidget({@required this.build, this.autofocus: false});
 
   @override
   _FocusWidgetState createState() => _FocusWidgetState();
@@ -15,7 +16,7 @@ class _FocusWidgetState extends State<FocusWidget> {
   @override
   Widget build(BuildContext context) {
     return Focus(
-      autofocus: false,
+      autofocus: widget.autofocus ?? false,
       child: Builder(
         builder: (BuildContext context) {
           final FocusNode focusNode = Focus.of(context);

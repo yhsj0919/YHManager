@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/controller/movie_home_controller.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/focus_widget.dart';
+import 'package:manager/utils/app_ext.dart';
 
 class MovieHomePage extends GetView<MovieHomeController> {
   @override
@@ -25,34 +27,84 @@ class MovieHomePage extends GetView<MovieHomeController> {
                       )
                 ],
               ),
-              child: Column(
-                children: [
-                  Container(height: 100),
-                  FocusWidget(build: (context, node, focused) {
-                    return AppText.headline("精选", color: focused ? Colors.black87 : Colors.grey);
-                  }),
-                  Container(height: 24),
-                  FocusWidget(build: (context, node, focused) {
-                    return AppText.headline("搜索", color: focused ? Colors.black87 : Colors.grey);
-                  }),
-                  Container(height: 24),
-                  FocusWidget(build: (context, node, focused) {
-                    return AppText.headline("更新", color: focused ? Colors.black87 : Colors.grey);
-                  }),
-                  Container(height: 24),
-                  FocusWidget(build: (context, node, focused) {
-                    return AppText.headline("我的", color: focused ? Colors.black87 : Colors.grey);
-                  }),
-                ],
+              child: FocusScope(
+                node: controller.nodes[0],
+                child: ListView.builder(
+                  itemCount: 4,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FocusWidget(
+                        autofocus: false,
+                        build: (context, node, focused) {
+                          return AppText.headline("精选", color: focused ? Colors.black87 : Colors.grey);
+                        }).keyListener(onkey: (event) {
+                      if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+                        controller.nodes[1].requestFocus();
+                      }
+                    });
+                  },
+                ),
               ),
             ),
           ),
           Expanded(
             flex: 7,
-            child: Container(),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: controller.videoTypes.map((e) => _buidVideoType(e)).toList(),
+              ),
+            ).paddingOnly(left: 50, right: 50, top: 50, bottom: 16),
           )
         ],
       ),
+    );
+  }
+
+  Widget _buidVideoType(Map<String, dynamic> info) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppText.title('${info['name']}'),
+        SizedBox(
+          height: 176,
+          child: FocusScope(
+            node: controller.nodes[info['node'].toInt()],
+            child: ListView.builder(
+              itemCount: 10,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return FocusWidget(
+                    autofocus: true,
+                    build: (context, node, focused) {
+                      return Container(
+                        margin: EdgeInsets.all(8),
+                        width: 120,
+                        height: 160,
+                        color: focused ? Colors.lightBlueAccent : Colors.blueGrey,
+                      );
+                    }).keyListener(onkey: (event) {
+                  if (event.logicalKey == LogicalKeyboardKey.arrowLeft && index == 0) {
+                    controller.nodes[0].requestFocus();
+                  }
+
+                  if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
+                    if (controller.nodes.length > info['node'].toInt() + 1) {
+                      controller.nodes[info['node'].toInt() + 1].requestFocus();
+                    }
+                  }
+                  if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
+                    if (info['node'].toInt() - 1 > 0) {
+                      controller.nodes[info['node'].toInt() - 1].requestFocus();
+                    }
+                  }
+                });
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
