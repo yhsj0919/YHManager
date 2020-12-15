@@ -4,7 +4,9 @@ import 'package:manager/route/routes.dart';
 import 'package:manager/ui/controller/root_controller.dart';
 import 'package:manager/ui/widget/app_text.dart';
 
-class RootPage extends GetView<RootController> {
+class RootPage extends StatelessWidget {
+  final RootController controller = Get.put(RootController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +17,7 @@ class RootPage extends GetView<RootController> {
       body: Navigator(
         key: Get.nestedKey(Routes.Key),
         initialRoute: Routes.Permission,
+        reportsRouteUpdateToEngine: true,
         onGenerateRoute: (setting) {
           return Routes.getRoute(setting);
         },
@@ -43,10 +46,7 @@ class RootPage extends GetView<RootController> {
                         isExpanded: item.value.expanded ?? false,
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return ListTile(
-                            leading: Icon(
-                              Icons.dashboard,
-                              color: isExpanded ? Theme.of(context).accentColor : Colors.grey,
-                            ),
+                            leading: Icon(Icons.dashboard, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
                             title: AppText.subtitle('${item.value.name}'),
                           );
                         },

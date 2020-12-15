@@ -1,3 +1,4 @@
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:manager/api/app_api.dart';
@@ -5,12 +6,12 @@ import 'package:manager/entity/menu_entity.dart';
 
 class PermissionController extends GetxController with StateMixin<List<MenuEntity>> {
   final formKey = GlobalKey<FormState>();
-  List<MenuEntity> menus = List<MenuEntity>();
+  List<MenuEntity> menus = List.empty(growable: true);
 
   @override
   void onInit() {
     super.onInit();
-    getPermission();
+    Future.delayed(Duration(milliseconds: 400)).then((value) => getPermission());
   }
 
   Future getPermission() {
@@ -29,7 +30,7 @@ class PermissionController extends GetxController with StateMixin<List<MenuEntit
       ///只有输入的内容符合要求通过才会到达此处
       formKey.currentState.save();
 
-      return AppApi.addPermission(param: menu.toJson()).then((value) {
+      return AppApi.addPermission(param: JsonMapper.toMap(menu)).then((value) {
         menus.clear();
         menus.addAll(value.data);
         change(menus, status: RxStatus.success());

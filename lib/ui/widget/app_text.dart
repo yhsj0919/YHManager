@@ -32,8 +32,8 @@ class AppText {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
 
-  static Widget body(String data, {double size = 15, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget body(String data, {double size = 15, Color color, int maxLines}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
   static Widget caption(String data, {double size = 13, Color color}) {

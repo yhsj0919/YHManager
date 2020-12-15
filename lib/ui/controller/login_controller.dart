@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/api/app_api.dart';
@@ -35,9 +37,8 @@ class LoginController extends GetxController {
     if (formKey.currentState.validate()) {
       ///只有输入的内容符合要求通过才会到达此处
       formKey.currentState.save();
-
       return AppApi.login({"userName": userName.value, "passWord": passWord.value}).then((value) {
-        Get.offAndToNamed(Routes.Root);
+        Future.delayed(Duration(milliseconds: 200)).then((value) => Get.offAndToNamed(Routes.Root));
       }).catchError((e) {
         tip.value = e.toString();
       });

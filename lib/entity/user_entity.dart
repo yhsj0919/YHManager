@@ -1,9 +1,10 @@
-import 'package:manager/generated/json/base/json_convert_content.dart';
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 
-class UserEntity with JsonConvert<UserEntity> {
-	String id;
-	String userName;
-	String nickName;
-	int type;
-	int deleted;
+@jsonSerializable
+class UserEntity {
+  String id;
+  String userName;
+  String nickName;
+  int type;
+  int deleted;
 }

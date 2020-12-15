@@ -9,7 +9,10 @@ import 'package:manager/ui/widget/argon_buttons_flutter.dart';
 import 'package:manager/utils/app_ext.dart';
 import 'package:manager/utils/app_validator.dart';
 
-class PermissionPage extends GetView<PermissionController> {
+
+class PermissionPage extends StatelessWidget {
+  final PermissionController controller = Get.put(PermissionController());
+
   @override
   Widget build(BuildContext context) {
     return Row(children: [
@@ -18,7 +21,7 @@ class PermissionPage extends GetView<PermissionController> {
         child: Scaffold(
           body: SingleChildScrollView(
             child: controller.obx(
-              (menus) => ExpansionPanelList(
+                  (menus) => ExpansionPanelList(
                 expansionCallback: controller.openMenu,
                 children: menus.map((item) => _buildExpansionPanel(item)).toList(),
               ),

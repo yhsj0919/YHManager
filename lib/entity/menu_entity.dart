@@ -1,6 +1,7 @@
-import 'package:manager/generated/json/base/json_convert_content.dart';
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 
-class MenuEntity with JsonConvert<MenuEntity> {
+@jsonSerializable
+class MenuEntity {
 	String id;
 	String parent;
 	String name;

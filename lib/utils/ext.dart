@@ -33,9 +33,9 @@ extension WidgetExtension on Widget {
       onKey: (RawKeyEvent event) {
         if (event is RawKeyUpEvent) {
           if (event.logicalKey == LogicalKeyboardKey.enter || event.logicalKey == LogicalKeyboardKey.select) {
-            print('>>>>>>>>>点击了确定>>>>>>>>>');
+            // print('>>>>>>>>>点击了确定>>>>>>>>>');
           } else {
-            print('>>>>>>>>>点击了>>${event.logicalKey}>>>>>>>');
+            // print('>>>>>>>>>点击了>>${event.logicalKey}>>>>>>>');
           }
 
           onkey?.call(event);

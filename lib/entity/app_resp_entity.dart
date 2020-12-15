@@ -1,4 +1,4 @@
-import 'package:manager/generated/json/base/json_convert_content.dart';
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 
 class AppRespEntity<T> {
   int code;
@@ -44,7 +44,7 @@ class AppRespEntity<T> {
       return json as T;
     } else {
       /// List类型数据由fromJsonAsT判断处理
-      return JsonConvert.fromJsonAsT<T>(json);
+      return JsonMapper.deserialize(json);
     }
   }
 }

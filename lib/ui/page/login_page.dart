@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/controller/login_controller.dart';
-import 'package:manager/ui/widget/blur_rect_widget.dart';
 import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/argon_buttons_flutter.dart';
+import 'package:manager/ui/widget/blur_rect_widget.dart';
 import 'package:manager/utils/app_validator.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends StatelessWidget {
+  final LoginController controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
