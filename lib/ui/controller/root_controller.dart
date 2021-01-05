@@ -6,6 +6,8 @@ import 'package:manager/entity/menu_entity.dart';
 class RootController extends GetxController {
   RxList<Rx<MenuEntity>> menus = RxList<Rx<MenuEntity>>();
 
+  String route;
+
   @override
   void onInit() {
     super.onInit();

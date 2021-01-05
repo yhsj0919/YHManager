@@ -8,16 +8,16 @@ class AppText {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
 
-  static Widget display3(String data, {double size = 56, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget display3(String data, {double size = 56, Color color, FontWeight fontWeight}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color, fontWeight: fontWeight));
   }
 
   static Widget display2(String data, {double size = 45, Color color}) {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
 
-  static Widget display1(String data, {double size = 34, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget display1(String data, {double size = 34, Color color, int maxLines}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
   static Widget headline(String data, {double size = 24, Color color}) {

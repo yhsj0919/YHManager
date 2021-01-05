@@ -35,8 +35,10 @@ class LoginController extends GetxController {
   Future login() {
     tip.value = "";
     if (formKey.currentState.validate()) {
-      ///只有输入的内容符合要求通过才会到达此处
       formKey.currentState.save();
+
+      // return Future.delayed(Duration(milliseconds: 500)).then((value) => Get.offAndToNamed(Routes.Root));
+
       return AppApi.login({"userName": userName.value, "passWord": passWord.value}).then((value) {
         Future.delayed(Duration(milliseconds: 200)).then((value) => Get.offAndToNamed(Routes.Root));
       }).catchError((e) {

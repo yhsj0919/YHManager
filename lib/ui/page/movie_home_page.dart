@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/controller/movie_home_controller.dart';
 import 'package:manager/ui/widget/app_text.dart';
-import 'package:manager/ui/widget/blur_rect_widget.dart';
+import 'package:manager/ui/widget/blur_widget.dart';
 import 'package:manager/ui/widget/focus_widget.dart';
 import 'package:manager/utils/app_ext.dart';
 
@@ -147,7 +147,7 @@ class MovieHomePage extends StatelessWidget {
               children: [
                 CachedNetworkImage(imageUrl: '${movie['cover']}'),
                 focused
-                    ? BlurRectWidget(
+                    ? BlurWidget(
                         margin: 0,
                         padding: 0,
                         radius: 0,

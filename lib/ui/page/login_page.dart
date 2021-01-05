@@ -4,7 +4,7 @@ import 'package:manager/ui/controller/login_controller.dart';
 import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/argon_buttons_flutter.dart';
-import 'package:manager/ui/widget/blur_rect_widget.dart';
+import 'package:manager/ui/widget/blur_widget.dart';
 import 'package:manager/utils/app_validator.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,11 +17,13 @@ class LoginPage extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Image.network(controller.http_bg.value, width: context.width, height: context.height, fit: BoxFit.cover, errorBuilder: (a, _, s) => getImage(controller.image_bg.value, context)),
-              BlurRectWidget(
+              BlurWidget(
                 margin: 40,
                 width: 400,
+                radius: 10,
                 padding: 30,
                 height: 400,
+                alignment: Alignment.center,
                 child: Form(
                   key: controller.formKey,
                   child: Column(

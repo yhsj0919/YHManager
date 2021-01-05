@@ -7,24 +7,24 @@ import 'package:manager/http/http_utils.dart';
 class AppApi {
   //登录
   static Future login(Map<String, String> params) {
-    return _post<UserEntity>("/login", params: params);
+    return _post<UserEntity>("/admin/login", params: params);
   }
 
   //获取权限
   static Future<AppRespEntity<List<MenuEntity>>> getPermission({Map<String, dynamic> param}) {
-    return _post<List<MenuEntity>>("/permission/getPermission", params: param ?? {});
+    return _post<List<MenuEntity>>("/admin/getPermission", params: param ?? {});
   }
 
   //添加权限
   static Future<AppRespEntity<List<MenuEntity>>> addPermission({Map<String, dynamic> param}) {
-    return _post<List<MenuEntity>>("/permission/addPermission", params: param ?? {});
+    return _post<List<MenuEntity>>("/admin/addPermission", params: param ?? {});
   }
 
   //公共请求方法
   static Future<AppRespEntity<T>> _post<T>(String path, {Map<String, dynamic> params}) async {
     var cookie = await Http().getCookieManager();
 
-    HttpUtils.init(baseUrl: 'http://192.168.3.58:8080', interceptors: [cookie]);
+    HttpUtils.init(baseUrl: 'http://192.168.3.110:8080', interceptors: [cookie],connectTimeout: 1500);
 
     try {
       var resp = await HttpUtils.post(path, data: params);

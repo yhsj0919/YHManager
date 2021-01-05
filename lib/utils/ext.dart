@@ -4,14 +4,6 @@ import 'package:get/get.dart';
 
 /// Map Json扩展方法
 extension WidgetExtension on Widget {
-  Widget isMobile({Widget def}) {
-    if (GetPlatform.isMobile) {
-      return def ?? Container();
-    } else {
-      return this;
-    }
-  }
-
   Widget showBy(bool show) {
     if (show) {
       return this;
@@ -46,10 +38,10 @@ extension WidgetExtension on Widget {
   }
 }
 
-extension IntExtension on num {
-  num isMobile({num def}) {
+extension TExt on Object {
+  T isMobile<T>({@required T def}) {
     if (GetPlatform.isMobile) {
-      return def ?? 0;
+      return def;
     } else {
       return this;
     }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
 import 'package:manager/ui/page/movie_home_page.dart';
+import 'package:manager/ui/page/not_found_page.dart';
 import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
 import 'package:manager/ui/widget/app_text.dart';
@@ -40,7 +41,7 @@ class Routes {
         return GetPageRoute(page: () => MovieHomePage(), parameter: arguments);
         break;
       default:
-        return GetPageRoute(page: () => Scaffold(body: Center(child: AppText.display1('页面不存在'))));
+        return GetPageRoute(page: () => NotFoundPage());
         break;
     }
   }

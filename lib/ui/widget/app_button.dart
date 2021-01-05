@@ -10,17 +10,17 @@ class AppButton {
   AppButton._();
 
   static Widget button(String text,
-      {VoidCallback onTap, double width, double height, Color background, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
+      {VoidCallback onTap, double width, double height, Color background:Colors.blue, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
     return Container(
       width: width,
       height: height,
       margin: margin,
       child: RaisedButton(
         elevation: 2,
-        focusElevation: 2,
-        disabledElevation: 2,
-        highlightColor: Colors.black12,
-        splashColor: Colors.black12,
+        // focusElevation: 2,
+        // disabledElevation: 2,
+        // highlightColor: Colors.black12,
+        // splashColor: Colors.black12,
         onPressed: onTap,
         child: AppText.button(text),
         color: background,
@@ -63,7 +63,7 @@ class AppButton {
     );
   }
 
-  static Widget outlineButton(String text, VoidCallback onPressed, {Color background, Color textColor, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
+  static Widget outlineButton(String text, VoidCallback onPressed, {Color background: Colors.white, Color textColor, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
     return Container(
       margin: margin,
       child: OutlineButton(

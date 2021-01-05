@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:manager/route/routes.dart';
 import 'package:manager/ui/controller/root_controller.dart';
 import 'package:manager/ui/widget/app_text.dart';
+import 'package:manager/ui/widget/blur_app_bar.dart';
+import 'package:manager/ui/widget/blur_widget.dart';
 
 class RootPage extends StatelessWidget {
   final RootController controller = Get.put(RootController());
@@ -10,10 +12,11 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: BlurAppBar(
         title: AppText.title("标题"),
       ),
-      drawer: _drawer(),
+      drawer: _drawer(context),
+      drawerScrimColor: Colors.transparent,
       body: Navigator(
         key: Get.nestedKey(Routes.Key),
         initialRoute: Routes.Permission,
@@ -25,18 +28,14 @@ class RootPage extends StatelessWidget {
     );
   }
 
-  Widget _drawer() {
-    return Drawer(
+  Widget _drawer(BuildContext context) {
+    return BlurWidget(
+      width: 304.0,
+      height: context.height,
       child: SingleChildScrollView(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          DrawerHeader(
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
-            child: Container(
-              color: Theme.of(Get.context).accentColor,
-            ),
-          ),
           Obx(() => ExpansionPanelList(
                 expansionCallback: controller.openMenu,
                 children: controller.menus
@@ -57,7 +56,11 @@ class RootPage extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
                               onTap: () {
-                                Get.offAndToNamed('${item.value?.child[index]?.path}', id: Routes.Key);
+                                var route = item.value?.child[index]?.path;
+                                if (controller.route != route) {
+                                  controller.route = route;
+                                  Get.offAndToNamed(controller.route, id: Routes.Key);
+                                }
                                 Get.back();
                               },
                               leading: Icon(Icons.subdirectory_arrow_right),
