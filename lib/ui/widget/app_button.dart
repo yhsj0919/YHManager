@@ -10,7 +10,7 @@ class AppButton {
   AppButton._();
 
   static Widget button(String text,
-      {VoidCallback onTap, double width, double height, Color background:Colors.blue, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, ShapeBorder shape}) {
+      {VoidCallback onTap, double width, double height, Color background: Colors.blue, Color textColor: Colors.white, EdgeInsetsGeometry padding, EdgeInsetsGeometry margin, double radius: 8}) {
     return Container(
       width: width,
       height: height,
@@ -25,7 +25,7 @@ class AppButton {
         child: AppText.button(text),
         color: background,
         textColor: textColor,
-        shape: shape ?? AppShape.circular(),
+        shape: AppShape.circular(radius: radius),
       ),
     );
   }

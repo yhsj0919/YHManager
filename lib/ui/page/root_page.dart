@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/route/routes.dart';
@@ -13,13 +14,21 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BlurAppBar(
-        title: AppText.title("标题"),
+        title: AppText.title("管理系统"),
+        // bottom: PreferredSize(
+        //   child: Container(
+        //     margin: EdgeInsets.only(left: 75, bottom: 16),
+        //     width: context.width,
+        //     child: AppText.body("页面数据为 Mock 示例数据，非真实数据。", maxLines: 1),
+        //   ),
+        //   preferredSize: Size(context.width, 30),
+        // ),
       ),
       drawer: _drawer(context),
       drawerScrimColor: Colors.transparent,
       body: Navigator(
         key: Get.nestedKey(Routes.Key),
-        initialRoute: Routes.Permission,
+        initialRoute: Routes.UserManager,
         reportsRouteUpdateToEngine: true,
         onGenerateRoute: (setting) {
           return Routes.getRoute(setting);

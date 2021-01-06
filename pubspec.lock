@@ -15,6 +15,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.41.1"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.13"
   args:
     dependency: transitive
     description:
@@ -257,7 +264,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -324,6 +331,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.4"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.19"
   intl:
     dependency: transitive
     description:
@@ -352,6 +366,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.1"
+  linked_scroll_controller:
+    dependency: transitive
+    description:
+      name: linked_scroll_controller
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.2"
   logging:
     dependency: transitive
     description:
@@ -457,6 +478,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.2"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.0"
   platform:
     dependency: transitive
     description:
@@ -471,6 +499,27 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.3"
+  pluto_filtered_list:
+    dependency: transitive
+    description:
+      name: pluto_filtered_list
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.1"
+  pluto_grid:
+    dependency: "direct main"
+    description:
+      name: pluto_grid
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
+  pluto_inside:
+    dependency: transitive
+    description:
+      name: pluto_inside
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.1"
   pool:
     dependency: transitive
     description:
@@ -519,7 +568,7 @@ packages:
       name: rxdart
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.24.1"
+    version: "0.25.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -714,6 +763,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.5.1"
   xpath_parse:
     dependency: "direct main"
     description:

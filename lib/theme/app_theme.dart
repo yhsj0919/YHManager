@@ -51,7 +51,7 @@ ThemeData lightTheme = ThemeData(
     buttonColor: Colors.blue,
   ),
   fontFamily: 'Microsoft YaHei',
-  primarySwatch: Colors.blueGrey,
+  primarySwatch: Colors.blue,
   brightness: Brightness.light,
 
   textTheme: TextTheme(

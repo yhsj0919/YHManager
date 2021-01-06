@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:manager/ui/page/error/server_error_page.dart';
 
 import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
 import 'package:manager/ui/page/movie_home_page.dart';
-import 'package:manager/ui/page/not_found_page.dart';
+import 'file:///D:/Server/YHManager/lib/ui/page/error/not_found_page.dart';
 import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
+import 'package:manager/ui/page/user/user_manager_page.dart';
 import 'package:manager/ui/widget/app_text.dart';
 
 class Routes {
@@ -17,6 +19,8 @@ class Routes {
   static const String Detail = "/detail";
   static const String Permission = "/permission";
   static const String MovieHome = "/movieHome";
+  static const String Error500 = "/Error500";
+  static const String UserManager = "/UserManager";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage()),
@@ -40,8 +44,14 @@ class Routes {
       case MovieHome:
         return GetPageRoute(page: () => MovieHomePage(), parameter: arguments);
         break;
+      case UserManager:
+        return GetPageRoute(page: () => UserManagerPage(), parameter: arguments);
+        break;
+      case Error500:
+        return GetPageRoute(page: () => ServerErrorPage());
+        break;
       default:
-        return GetPageRoute(page: () => NotFoundPage());
+        return GetPageRoute(page: () => ServerErrorPage());
         break;
     }
   }

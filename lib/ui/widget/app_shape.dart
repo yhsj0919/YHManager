@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class AppShape {
   AppShape._();
 
-  static ShapeBorder circular() {
+  static ShapeBorder circular({double radius: 50}) {
     return RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-      Radius.circular(50),
+      Radius.circular(radius),
     ));
   }
 

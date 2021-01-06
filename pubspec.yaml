@@ -42,6 +42,8 @@ dependencies:
   xpath_parse: ^1.0.2
   #json解析
   dart_json_mapper: ^1.7.6
+  #表格
+  pluto_grid: ^1.0.0
 
 dev_dependencies:
   flutter_test:

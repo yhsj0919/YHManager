@@ -40,7 +40,7 @@ class LoginController extends GetxController {
       // return Future.delayed(Duration(milliseconds: 500)).then((value) => Get.offAndToNamed(Routes.Root));
 
       return AppApi.login({"userName": userName.value, "passWord": passWord.value}).then((value) {
-        Future.delayed(Duration(milliseconds: 200)).then((value) => Get.offAndToNamed(Routes.Root));
+        Future.delayed(Duration(milliseconds: 300)).then((value) => Get.offAndToNamed(Routes.Root));
       }).catchError((e) {
         tip.value = e.toString();
       });

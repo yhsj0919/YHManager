@@ -40,7 +40,7 @@ extension WidgetExtension on Widget {
 
 extension TExt on Object {
   T isMobile<T>({@required T def}) {
-    if (GetPlatform.isMobile) {
+    if (Get.context.isPhone) {
       return def;
     } else {
       return this;

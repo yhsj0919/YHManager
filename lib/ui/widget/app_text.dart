@@ -12,24 +12,24 @@ class AppText {
     return Text(data, style: TextStyle(fontSize: size, color: color, fontWeight: fontWeight));
   }
 
-  static Widget display2(String data, {double size = 45, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget display2(String data, {double size = 45, Color color, int maxLines}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
   static Widget display1(String data, {double size = 34, Color color, int maxLines}) {
     return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
-  static Widget headline(String data, {double size = 24, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget headline(String data, {double size = 24, Color color, int maxLines}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
   static Widget title(String data, {double size = 21, Color color}) {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
 
-  static Widget subtitle(String data, {double size = 17, Color color}) {
-    return Text(data, style: TextStyle(fontSize: size, color: color));
+  static Widget subtitle(String data, {double size = 17, Color color, int maxLines}) {
+    return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
   static Widget body(String data, {double size = 15, Color color, int maxLines}) {
@@ -75,6 +75,9 @@ class AppText {
 
   static Widget textField({
     String text,
+    double width: 200,
+    double height,
+    double fontSize,
     ValueChanged<String> onChanged,
     FormFieldSetter<String> onSaved,
     FormFieldValidator<String> validator,
@@ -87,27 +90,33 @@ class AppText {
     String error,
     String help,
   }) {
-    return TextFormField(
-      initialValue: text ?? '',
-      onChanged: onChanged,
-      onSaved: onSaved,
-      validator: validator,
-      autovalidateMode: autoValidateMode,
-      autofocus: false,
-      focusNode: FocusNode(canRequestFocus: false),
-      keyboardType: inputType,
-      style: style ?? TextStyle(fontSize: 18, color: Color(0xff1f98f5)),
-      maxLines: 1,
-      enabled: enable,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(borderSide: BorderSide()),
-        hintText: hint ?? '',
-        hintStyle: TextStyle(color: Colors.grey),
-        errorText: error,
-        errorMaxLines: 1,
-        helperText: help,
-        helperMaxLines: 1,
+    return Container(
+      width: width,
+      height: height,
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      child: TextFormField(
+        initialValue: text ?? '',
+        onChanged: onChanged,
+        onSaved: onSaved,
+        validator: validator,
+        autovalidateMode: autoValidateMode,
+        autofocus: false,
+        focusNode: FocusNode(canRequestFocus: false),
+        keyboardType: inputType,
+        style: style ?? TextStyle(fontSize: fontSize),
+        maxLines: 1,
+        enabled: enable,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+          labelText: label,
+          border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(10))),
+          hintText: hint ?? '',
+          hintStyle: TextStyle(color: Colors.grey),
+          errorText: error,
+          errorMaxLines: 1,
+          helperText: help,
+          helperMaxLines: 1,
+        ),
       ),
     );
   }
