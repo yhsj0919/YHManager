@@ -4,49 +4,89 @@ import 'package:get/get.dart';
 import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
-import 'package:manager/utils/ext.dart';
+import 'package:manager/ui/widget/expansion_widget.dart';
+import 'package:manager/ui/widget/search_card_widget.dart';
 
-class UserManagerPage extends StatelessWidget {
+class UserManagerPage extends StatefulWidget {
+  @override
+  _UserManagerPageState createState() => _UserManagerPageState();
+}
+
+class _UserManagerPageState extends State<UserManagerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          BlurWidget(
-              radius: 10,
-              borderWidth: 1,
-              child: ExpansionTile(
-                title: AppText.title("标题"),
-                initiallyExpanded: true,
-                childrenPadding: const EdgeInsets.all(20),
-                expandedAlignment: Alignment.topLeft,
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-              )),
-          Row(
+
+          ExpansionWidget(
+            expandedAlignment: Alignment.topLeft,
+            title: Wrap(
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40),
+                AppText.textField(label: '手机号', width: 280, fontSize: 14, height: 40),
+              ],
+            ),
             children: [
-              Expanded(
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    AppText.textField(label: '用户名', width: 300, fontSize: 14, height: 40),
-                    AppText.textField(label: '手机号', width: 300, fontSize: 14, height: 40),
-                  ],
-                ),
+              AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40),
+              AppText.textField(label: '手机号', width: 280, fontSize: 14, height: 40),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              AppButton.button("查询", onTap: () {}, margin: EdgeInsets.symmetric(horizontal: 8)),
+              AppButton.button("取消", onTap: () {}, margin: EdgeInsets.symmetric(horizontal: 8)),
+            ],
+          ),
+          SearchCardWidget(
+            items: [
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
               ),
-              Wrap(
-                direction: Axis.horizontal.isMobile(def: Axis.vertical),
-                alignment: WrapAlignment.start,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 8.0.isMobile(def: 15.0),
-                //主轴上子控件的间距
-                children: [
-                  AppButton.button("查询", onTap: () {}, margin: EdgeInsets.symmetric(horizontal: 8)),
-                  AppButton.button("取消", onTap: () {}, margin: EdgeInsets.symmetric(horizontal: 8)),
-                ],
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
+              ),
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
+              ),
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
+              ),
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
+              ),
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
+              ),
+              SearchItem(
+                searchKey: 'name',
+                itemBuild: (BuildContext context, Function result) {
+                  return AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40, onChanged: result);
+                },
               ),
             ],
-          )
+          ),
         ],
       ).paddingAll(16),
       floatingActionButton: BlurWidget(
