@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'blur_widget.dart';
@@ -83,35 +84,49 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        BlurWidget(
-          radius: 10,
-          borderWidth: 1,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              widget.title,
-              ClipRect(
-                child: Align(
-                  alignment: widget.expandedAlignment ?? Alignment.center,
-                  heightFactor: _heightFactor.value,
-                  child: child,
-                ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-            icon: RotationTransition(
-              turns: _iconTurns,
-              child: const Icon(Icons.expand_more),
+    return BlurWidget(
+      radius: 10,
+      // shadowColor: Colors.redAccent,
+      elevation: 0,
+      borderWidth: 1,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+            child: Row(
+              children: [
+                Expanded(child: widget.title),
+                widget.children.length != 0
+                    ? IconButton(
+                        constraints: BoxConstraints(
+                          minWidth: 35,
+                          minHeight: 35,
+                        ),
+                        // padding: EdgeInsets.all(0),
+                        icon: RotationTransition(
+                          turns: _iconTurns,
+                          child: const Icon(Icons.expand_more),
+                        ),
+                        onPressed: _handleTap)
+                    : Container(),
+              ],
             ),
-            onPressed: _handleTap),
-      ],
+          ),
+          ClipRect(
+            child: Align(
+              alignment: widget.expandedAlignment ?? Alignment.center,
+              heightFactor: _heightFactor.value,
+              child: Padding(
+                padding: EdgeInsets.only(left: 8, right: 8, bottom: 8),
+                child: child,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

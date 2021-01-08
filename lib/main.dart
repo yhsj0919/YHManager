@@ -24,6 +24,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => Scaffold(
+        // 全局隐藏键盘
+        body: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+              FocusManager.instance.primaryFocus.unfocus();
+            }
+          },
+          child: child,
+        ),
+      ),
       title: 'Flutter Demo',
       theme: lightTheme,
       getPages: Routes.routes,

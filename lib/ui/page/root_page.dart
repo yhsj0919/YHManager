@@ -14,6 +14,7 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BlurAppBar(
+        excludeHeaderSemantics: false,
         title: AppText.title("管理系统"),
         // bottom: PreferredSize(
         //   child: Container(
@@ -59,11 +60,11 @@ class RootPage extends StatelessWidget {
                           );
                         },
                         body: ListView.builder(
-                          padding: EdgeInsets.only(left: 20),
                           shrinkWrap: true,
                           itemCount: item.value.child?.length ?? 0,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
+                              contentPadding: EdgeInsets.only(left: 20,right: 16),
                               onTap: () {
                                 var route = item.value?.child[index]?.path;
                                 if (controller.route != route) {

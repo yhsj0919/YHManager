@@ -14,9 +14,11 @@ class BlurWidget extends StatefulWidget {
   Alignment alignment;
   double blur;
   Color shadowColor;
+  Color splashColor;
   ShapeBorder shape;
   GestureTapCallback onTap;
   double borderWidth;
+  BoxBorder border;
 
   BlurWidget(
       {this.child,
@@ -27,11 +29,13 @@ class BlurWidget extends StatefulWidget {
       this.padding: 0,
       this.elevation: 4,
       this.shadowColor,
+      this.splashColor: Colors.white,
       this.radius: 0,
       this.alignment,
       this.shape,
       this.borderWidth: 0,
       this.color: Colors.white54,
+      this.border,
       this.onTap});
 
   @override
@@ -45,18 +49,16 @@ class _BlurWidgetState extends State<BlurWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
-        border: Border.all(color: widget.borderWidth == 0 ? Colors.transparent : Color(0xffcccccc), width: widget.borderWidth),
-        boxShadow: widget.elevation > 0
-            ? [
-                BoxShadow(
-                    color: widget.shadowColor ?? Colors.black12,
-                    offset: Offset(2, 4), //阴影xy轴偏移量
-                    blurRadius: widget.elevation * 2, //阴影模糊程度
-                    spreadRadius: widget.elevation //阴影扩散程度
-                    ),
-              ]
-            : null,
+        borderRadius: widget.border == null ? BorderRadius.all(Radius.circular(widget.radius)) : null,
+        border: widget.border ?? Border.all(color: widget.borderWidth == 0 ? Colors.transparent : Color(0xffcccccc), width: widget.borderWidth),
+        boxShadow: [
+          BoxShadow(
+              color: widget.shadowColor ?? Colors.black12,
+              offset: widget.elevation > 0 ? Offset(2, 4) : Offset.zero, //阴影xy轴偏移量
+              blurRadius: widget.elevation * 2, //阴影模糊程度
+              spreadRadius: widget.elevation //阴影扩散程度
+              ),
+        ],
       ),
       margin: EdgeInsets.all(widget.margin),
       child: ClipRRect(
@@ -70,7 +72,7 @@ class _BlurWidgetState extends State<BlurWidget> {
             color: Colors.transparent,
             child: InkWell(
               focusNode: focusNode,
-              splashColor: widget.shadowColor,
+              splashColor: widget.shadowColor ?? widget.splashColor,
               focusColor: widget.shadowColor?.withAlpha(55),
               onHover: (hover) {
                 setState(() {

@@ -24,7 +24,7 @@ class AppApi {
   static Future<AppRespEntity<T>> _post<T>(String path, {Map<String, dynamic> params}) async {
     var cookie = await Http().getCookieManager();
 
-    HttpUtils.init(baseUrl: 'http://192.168.3.110:8080', interceptors: [cookie],connectTimeout: 1500);
+    HttpUtils.init(baseUrl: 'http://192.168.3.110:8080', interceptors: [cookie],connectTimeout: 15000);
 
     try {
       var resp = await HttpUtils.post(path, data: params);

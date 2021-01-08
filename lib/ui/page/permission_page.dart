@@ -90,7 +90,6 @@ class PermissionPage extends StatelessWidget {
   //子菜单
   Widget _buildChildren(List<MenuEntity> menus) {
     return ListView.builder(
-      padding: EdgeInsets.only(left: 20),
       shrinkWrap: true,
       itemCount: menus.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
@@ -102,6 +101,7 @@ class PermissionPage extends StatelessWidget {
   //子菜单标题
   Widget _buildChildTitle(MenuEntity menu) {
     return ListTile(
+      contentPadding: EdgeInsets.only(left: 20,right: 16),
       leading: Icon(Icons.subdirectory_arrow_right),
       title: AppText.title('${menu?.name}'),
       subtitle: AppText.subtitle('${menu?.path}'),
@@ -193,7 +193,7 @@ class PermissionPage extends StatelessWidget {
       barrierDismissible: false,
       content: dialog,
       radius: 10,
-      cancel: AppButton.textButton("取消", Get.back, width: 80, height: 40),
+      cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40),
       confirm: AppButton.button2("确定", width: 80, height: 40, onTap: (startLoading, stopLoading, btnState) {
         if (btnState == ButtonState.None) {
           startLoading();

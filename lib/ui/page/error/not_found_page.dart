@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
-import 'package:manager/utils/ext.dart';
+import 'package:manager/utils/app_ext.dart';
 
 class NotFoundPage extends StatelessWidget {
   @override
