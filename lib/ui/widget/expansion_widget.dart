@@ -18,6 +18,8 @@ class ExpansionWidget extends StatefulWidget {
     this.initiallyExpanded = false,
     this.maintainState = false,
     this.expandedAlignment,
+    this.minHeight,
+    this.minWidth,
   })  : assert(initiallyExpanded != null),
         assert(maintainState != null),
         super(key: key);
@@ -31,6 +33,8 @@ class ExpansionWidget extends StatefulWidget {
   final bool initiallyExpanded;
 
   final bool maintainState;
+  final double minWidth;
+  final double minHeight;
 
   final Alignment expandedAlignment;
 
@@ -89,6 +93,8 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
       // shadowColor: Colors.redAccent,
       elevation: 0,
       borderWidth: 1,
+      minWidth: widget.minWidth,
+      minHeight: widget.minHeight,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,

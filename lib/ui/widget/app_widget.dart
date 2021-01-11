@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
 
+import 'app_button.dart';
+import 'expansion_widget.dart';
+
 class AppWidget {
   AppWidget._();
 
@@ -65,5 +68,18 @@ class AppWidget {
         ],
       ),
     );
+  }
+
+  static Widget menuBarWidget({List<Widget> title: const [], List<Widget> actions: const [], List<Widget> children: const []}) {
+    return ExpansionWidget(
+      expandedAlignment: Alignment.topLeft,
+      minHeight: 50,
+      title: Row(
+        children: title ?? []
+          ..add(Expanded(child: Container()))
+          ..addAll(actions),
+      ),
+      children: children,
+    ).paddingOnly(top: 16, left: 16, right: 16);
   }
 }

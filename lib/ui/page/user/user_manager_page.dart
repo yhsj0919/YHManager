@@ -2,13 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:manager/ui/widget/app_button.dart';
-import 'package:manager/ui/widget/app_text.dart';
-import 'package:manager/ui/widget/app_widget.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
-import 'package:manager/ui/widget/expansion_widget.dart';
-import 'package:manager/utils/ext.dart';
+import 'package:manager/ui/widget/widget.dart';
 
 class UserManagerPage extends StatefulWidget {
   @override
@@ -21,21 +16,17 @@ class _UserManagerPageState extends State<UserManagerPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.width, context.height),
-        child: ExpansionWidget(
-          expandedAlignment: Alignment.topLeft,
-          title: Row(
-            children: [
-              AppButton.iconButton(Icon(Icons.add), "新建", onTap: () {}),
-              Expanded(child: Container()),
-              IconButton(icon: Icon(Icons.search), onPressed: () {}),
-              IconButton(icon: Icon(Icons.refresh), onPressed: () {}),
-            ],
-          ),
+        child: AppWidget.menuBarWidget(
+          title: [AppButton.iconButton(Icon(Icons.add), "新建", onTap: () {})],
+          actions: [
+            IconButton(icon: Icon(Icons.search), onPressed: () {}),
+            IconButton(icon: Icon(Icons.refresh), onPressed: () {}),
+          ],
           children: [
             AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40),
             AppText.textField(label: '手机号', width: 280, fontSize: 14, height: 40),
           ],
-        ).paddingOnly(top: 16, left: 16, right: 16),
+        ),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16.0.isMobile(def: 8.0)),
@@ -68,7 +59,7 @@ class _UserManagerPageState extends State<UserManagerPage> {
       elevation: 0,
       onTap: () {},
       child: ListTile(
-        contentPadding: EdgeInsets.only(left:16,right: 0),
+        contentPadding: EdgeInsets.only(left: 16, right: 0),
         leading: ClipRRect(
           // 边界半径（`borderRadius`）属性，圆角的边界半径。
           borderRadius: BorderRadius.all(Radius.circular(10.0)),

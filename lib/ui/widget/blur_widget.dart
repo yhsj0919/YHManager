@@ -7,7 +7,9 @@ class BlurWidget extends StatefulWidget {
   double padding;
   double margin;
   double width;
+  double minWidth;
   double height;
+  double minHeight;
   double radius;
   Color color;
   double elevation;
@@ -18,11 +20,12 @@ class BlurWidget extends StatefulWidget {
   ShapeBorder shape;
   GestureTapCallback onTap;
   double borderWidth;
-  BoxBorder border;
 
   BlurWidget(
       {this.child,
       this.width,
+      this.minWidth,
+      this.minHeight,
       this.blur: 10,
       this.height,
       this.margin: 0,
@@ -37,6 +40,8 @@ class BlurWidget extends StatefulWidget {
       this.color: Colors.white54,
       this.border,
       this.onTap});
+
+  BoxBorder border;
 
   @override
   _BlurWidgetState createState() => _BlurWidgetState();
@@ -81,6 +86,10 @@ class _BlurWidgetState extends State<BlurWidget> {
               },
               onTap: widget.onTap,
               child: Container(
+                constraints: BoxConstraints(
+                  minWidth: widget.minWidth ?? 0,
+                  minHeight: widget.minHeight ?? 0,
+                ),
                 alignment: widget.alignment,
                 width: widget.width,
                 height: widget.height,

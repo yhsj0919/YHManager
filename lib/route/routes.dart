@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/page/error/not_found_page.dart';
 import 'package:manager/ui/page/error/server_error_page.dart';
+import 'package:manager/ui/page/goods/goods_page.dart';
 
 import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
@@ -21,6 +22,7 @@ class Routes {
   static const String MovieHome = "/movieHome";
   static const String Error500 = "/error500";
   static const String UserManager = "/userManager";
+  static const String Goods = "/goods";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage()),
@@ -46,6 +48,9 @@ class Routes {
         break;
       case UserManager:
         return GetPageRoute(page: () => UserManagerPage(), parameter: arguments);
+        break;
+      case Goods:
+        return GetPageRoute(page: () => GoodsPage(), parameter: arguments);
         break;
       case Error500:
         return GetPageRoute(page: () => ServerErrorPage());

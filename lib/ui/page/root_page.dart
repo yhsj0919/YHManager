@@ -29,7 +29,7 @@ class RootPage extends StatelessWidget {
       drawerScrimColor: Colors.transparent,
       body: Navigator(
         key: Get.nestedKey(Routes.Key),
-        initialRoute: Routes.UserManager,
+        initialRoute: Routes.Home,
         reportsRouteUpdateToEngine: true,
         onGenerateRoute: (setting) {
           return Routes.getRoute(setting);
@@ -64,7 +64,7 @@ class RootPage extends StatelessWidget {
                           itemCount: item.value.child?.length ?? 0,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              contentPadding: EdgeInsets.only(left: 20,right: 16),
+                              contentPadding: EdgeInsets.only(left: 20, right: 16),
                               onTap: () {
                                 var route = item.value?.child[index]?.path;
                                 if (controller.route != route) {
