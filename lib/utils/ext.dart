@@ -4,6 +4,13 @@ import 'package:get/get.dart';
 
 /// Map Json扩展方法
 extension WidgetExtension on Widget {
+  Widget icon(Widget icon) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [icon ?? Container(), this],
+    );
+  }
+
   Widget showBy(bool show) {
     if (show) {
       return this;
@@ -41,6 +48,14 @@ extension WidgetExtension on Widget {
 extension TExt on Object {
   T isMobile<T>({@required T def}) {
     if (Get.context.isPhone) {
+      return def;
+    } else {
+      return this;
+    }
+  }
+
+  T autoValue<T>({@required bool condition, @required T def}) {
+    if (condition) {
       return def;
     } else {
       return this;

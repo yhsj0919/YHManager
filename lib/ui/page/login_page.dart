@@ -18,20 +18,20 @@ class LoginPage extends StatelessWidget {
             children: [
               Image.network(controller.http_bg.value, width: context.width, height: context.height, fit: BoxFit.cover, errorBuilder: (a, _, s) => getImage(controller.image_bg.value, context)),
               BlurWidget(
-                margin: 40,
+                margin: EdgeInsets.all(40),
                 width: 400,
                 radius: 10,
-                padding: 30,
-                height: 400,
+                padding: EdgeInsets.all(30),
+                height: 430,
                 alignment: Alignment.center,
                 child: Form(
                   key: controller.formKey,
                   child: Column(
                     children: [
                       AppText.title('appName'.tr),
-                      Expanded(flex: 2, child: Container()),
+                      Expanded(flex: 4, child: Container()),
                       _buildUserName(),
-                      Expanded(flex: 2, child: Container()),
+                      Expanded(flex: 4, child: Container()),
                       _buildPassword(context),
                       Expanded(flex: 1, child: Container()),
                       AppText.tip(controller.tip.value, width: 300),

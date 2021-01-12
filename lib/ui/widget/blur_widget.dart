@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class BlurWidget extends StatefulWidget {
   Widget child;
-  double padding;
-  double margin;
+  EdgeInsetsGeometry margin;
   double width;
   double minWidth;
   double height;
@@ -20,6 +19,7 @@ class BlurWidget extends StatefulWidget {
   ShapeBorder shape;
   GestureTapCallback onTap;
   double borderWidth;
+  EdgeInsetsGeometry padding;
 
   BlurWidget(
       {this.child,
@@ -28,8 +28,8 @@ class BlurWidget extends StatefulWidget {
       this.minHeight,
       this.blur: 10,
       this.height,
-      this.margin: 0,
-      this.padding: 0,
+      this.margin,
+      this.padding,
       this.elevation: 4,
       this.shadowColor,
       this.splashColor: Colors.white,
@@ -53,6 +53,12 @@ class _BlurWidgetState extends State<BlurWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(
+        minWidth: widget.minWidth ?? 0,
+        minHeight: widget.minHeight ?? 0,
+      ),
+      width: widget.width != null ? (widget.width ?? 0) - (widget?.margin?.horizontal ?? 0) : null,
+      height: widget.height != null ? (widget.height ?? 0) - (widget?.margin?.vertical ?? 0) : null,
       decoration: BoxDecoration(
         borderRadius: widget.border == null ? BorderRadius.all(Radius.circular(widget.radius)) : null,
         border: widget.border ?? Border.all(color: widget.borderWidth == 0 ? Colors.transparent : Color(0xffcccccc), width: widget.borderWidth),
@@ -65,7 +71,7 @@ class _BlurWidgetState extends State<BlurWidget> {
               ),
         ],
       ),
-      margin: EdgeInsets.all(widget.margin),
+      margin: widget.margin,
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
         child: BackdropFilter(
@@ -86,15 +92,9 @@ class _BlurWidgetState extends State<BlurWidget> {
               },
               onTap: widget.onTap,
               child: Container(
-                constraints: BoxConstraints(
-                  minWidth: widget.minWidth ?? 0,
-                  minHeight: widget.minHeight ?? 0,
-                ),
                 alignment: widget.alignment,
-                width: widget.width,
-                height: widget.height,
                 color: widget.color,
-                padding: EdgeInsets.all(widget.padding),
+                padding: widget.padding,
                 child: widget.child,
               ),
             ),

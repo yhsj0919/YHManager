@@ -17,11 +17,12 @@ class AppWidget {
     );
   }
 
-  static Widget line({double width, double height: 1, Color color}) {
+  static Widget line({double width, double height: 1, Color color, double marginVertical: 0, double marginHorizontal: 0}) {
     final Color effectiveColor = color ?? (DividerTheme.of(Get.context).color ?? Theme.of(Get.context).dividerColor);
     return Container(
       width: width,
       height: height,
+      margin: EdgeInsets.symmetric(vertical: marginVertical, horizontal: marginHorizontal),
       color: effectiveColor,
     );
   }

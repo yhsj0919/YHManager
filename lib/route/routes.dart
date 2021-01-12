@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:manager/ui/page/customer/customer_manager_page.dart';
 import 'package:manager/ui/page/error/not_found_page.dart';
 import 'package:manager/ui/page/error/server_error_page.dart';
 import 'package:manager/ui/page/goods/goods_page.dart';
@@ -7,6 +8,7 @@ import 'package:manager/ui/page/goods/goods_page.dart';
 import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
 import 'package:manager/ui/page/movie_home_page.dart';
+import 'package:manager/ui/page/order/order_manager_page.dart';
 import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
 import 'package:manager/ui/page/user/user_manager_page.dart';
@@ -23,6 +25,8 @@ class Routes {
   static const String Error500 = "/error500";
   static const String UserManager = "/userManager";
   static const String Goods = "/goods";
+  static const String Order = "/order";
+  static const String Customer = "/customer";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage()),
@@ -51,6 +55,12 @@ class Routes {
         break;
       case Goods:
         return GetPageRoute(page: () => GoodsPage(), parameter: arguments);
+        break;
+      case Order:
+        return GetPageRoute(page: () => OrderManagerPage(), parameter: arguments);
+        break;
+      case Customer:
+        return GetPageRoute(page: () => CustomerManagerPage(), parameter: arguments);
         break;
       case Error500:
         return GetPageRoute(page: () => ServerErrorPage());

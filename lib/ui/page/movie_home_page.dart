@@ -148,8 +148,6 @@ class MovieHomePage extends StatelessWidget {
                 CachedNetworkImage(imageUrl: '${movie['cover']}'),
                 focused
                     ? BlurWidget(
-                        margin: 0,
-                        padding: 0,
                         radius: 0,
                         height: 30,
                         child: AppText.body('${movie['title']}', size: 10),
