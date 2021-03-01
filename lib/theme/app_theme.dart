@@ -50,7 +50,7 @@ ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
     buttonColor: Colors.blue,
   ),
-  fontFamily: 'Microsoft YaHei',
+  fontFamily: 'Montserrat',
   primarySwatch: Colors.blue,
   brightness: Brightness.light,
 

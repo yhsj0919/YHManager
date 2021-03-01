@@ -59,8 +59,8 @@ class Http {
 
   Future<CookieManager> getCookieManager() async {
     //本地管理cookie
-    var cookiePath = await getApplicationDocumentsDirectory();
-    return CookieManager(PersistCookieJar(dir: cookiePath.path));
+    // var cookiePath = await getApplicationDocumentsDirectory();
+    return CookieManager(PersistCookieJar());
   }
 
   /// 设置headers

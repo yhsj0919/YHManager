@@ -710,7 +710,7 @@ class _BlurAppBarState extends State<BlurAppBar> {
     final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
     final double toolbarHeight = widget.toolbarHeight ?? kToolbarHeight;
-    final bool backwardsCompatibility = widget.backwardsCompatibility ?? appBarTheme.backwardsCompatibility ?? true;
+    final bool backwardsCompatibility = widget.backwardsCompatibility ?? true;
 
     final Color backgroundColor = backwardsCompatibility
         ? widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor

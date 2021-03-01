@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -145,7 +144,7 @@ class MovieHomePage extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                CachedNetworkImage(imageUrl: '${movie['cover']}'),
+                Image.network('${movie['cover']}'),
                 focused
                     ? BlurWidget(
                         radius: 0,

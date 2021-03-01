@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/menu_entity.dart';
@@ -71,7 +73,7 @@ class RootController extends GetxController {
   }
 
   Future getPermission() {
-    List<MenuEntity> data = JsonMapper.deserialize(json);
+    List<MenuEntity> data = JsonMapper.deserialize(JsonEncoder().convert(json));
     menus.clear();
     menus.addAll(data.map((e) => e.obs).toList());
 
