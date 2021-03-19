@@ -47,7 +47,7 @@ class Http {
   /// [receiveTimeout] 接收超时赶时间
   /// [interceptors] 基础拦截器
   Future<void> init({String baseUrl, int connectTimeout, int receiveTimeout, List<Interceptor> interceptors}) async {
-    dio.options = dio.options.merge(
+    dio.options = dio.options.copyWith(
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,

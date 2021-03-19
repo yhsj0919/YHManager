@@ -6,7 +6,7 @@ import 'app_exceptions.dart';
 /// 错误处理拦截器
 class ErrorInterceptor extends Interceptor {
   @override
-  Future onError(DioError err) {
+  Future onError(DioError err, ErrorInterceptorHandler handler) {
     debugPrint('DioError===: ${err.toString()}');
     // error统一处理
     AppException appException = AppException.create(err);

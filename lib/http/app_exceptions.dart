@@ -18,27 +18,27 @@ class AppException implements Exception {
 
   factory AppException.create(DioError error) {
     switch (error.type) {
-      case DioErrorType.CANCEL:
+      case DioErrorType.cancel:
         {
           return BadRequestException(-1, "请求取消");
         }
         break;
-      case DioErrorType.CONNECT_TIMEOUT:
+      case DioErrorType.connectTimeout:
         {
           return BadRequestException(-1, "连接超时");
         }
         break;
-      case DioErrorType.SEND_TIMEOUT:
+      case DioErrorType.sendTimeout:
         {
           return BadRequestException(-1, "请求超时");
         }
         break;
-      case DioErrorType.RECEIVE_TIMEOUT:
+      case DioErrorType.receiveTimeout:
         {
           return BadRequestException(-1, "响应超时");
         }
         break;
-      case DioErrorType.RESPONSE:
+      case DioErrorType.response:
         {
           try {
             int errCode = error.response.statusCode;
@@ -101,7 +101,7 @@ class AppException implements Exception {
           }
         }
         break;
-      case DioErrorType.DEFAULT:
+      case DioErrorType.other:
         {
           if (error.message.contains('Insecure HTTP is not allowed by platform')) {
             return BadRequestException(-1, "平台不允许使用不安全的HTTP,请切换HTTPS");
