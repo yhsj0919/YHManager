@@ -1,39 +1,30 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 /// 本地存储
-class SpUtil {
-  static SpUtil _instance = new SpUtil._();
+class Sp {
+  static Sp _instance = new Sp._();
 
-  factory SpUtil() => _instance;
-  static SharedPreferences _prefs;
+  factory Sp() => _instance;
+  static GetStorage _prefs;
 
-  SpUtil._();
+  Sp._();
 
-  static Future<void> init() async {
-    if (_prefs == null) {
-      _prefs = await SharedPreferences.getInstance();
-    }
+  static void init() async {
+    await GetStorage.init().then((value) {
+      if (value) {
+        _prefs = GetStorage();
+      }
+    });
   }
 
-  Future<bool> setJSON(String key, dynamic jsonVal) {
-    String jsonString = jsonEncode(jsonVal);
-    return _prefs.setString(key, jsonString);
+  Future<void> set(String key, dynamic jsonVal) {
+    return _prefs.write(key, jsonVal);
   }
 
-  dynamic getJSON(String key) {
-    String jsonString = _prefs.getString(key);
-    return jsonString == null ? null : jsonDecode(jsonString);
-  }
-
-  Future<bool> setBool(String key, bool val) {
-    return _prefs.setBool(key, val);
-  }
-
-  bool getBool(String key) {
-    bool val = _prefs.getBool(key);
-    return val == null ? false : val;
+  T get<T>(String key) {
+    return _prefs.read(key);
   }
 
   Future<bool> remove(String key) {

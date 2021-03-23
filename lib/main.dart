@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 import 'package:manager/theme/app_string.dart';
 import 'package:manager/theme/app_theme.dart';
 
+import 'http/sp.dart';
 import 'main.mapper.g.dart';
 import 'route/routes.dart';
 
-void main() {
+Future<void> main() async {
   initializeJsonMapper();
+  Sp.init();
   runApp(MyApp());
   if (Platform.isAndroid) {
     final SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);

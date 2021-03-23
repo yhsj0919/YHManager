@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 
 class AppRespEntity<T> {
@@ -7,7 +9,7 @@ class AppRespEntity<T> {
 
   AppRespEntity(this.code, this.msg, this.data);
 
-  AppRespEntity.fromJson(Map<String, dynamic> json) {
+  AppRespEntity.fromJson(json) {
     if (json['code'] != null) {
       code = json['code']?.toInt();
     }
@@ -37,14 +39,14 @@ class AppRespEntity<T> {
     return map.toString();
   }
 
-  T _generateOBJ<T>(Object json) {
-    if (T.toString() == 'String') {
-      return json.toString() as T;
-    } else if (T.toString() == 'Map<dynamic, dynamic>') {
-      return json as T;
+  T _generateOBJ<T>(mJson) {
+    if (T is String) {
+      return mJson.toString() as T;
+    } else if (T is Map<dynamic, dynamic>) {
+      return mJson as T;
     } else {
       /// List类型数据由fromJsonAsT判断处理
-      return JsonMapper.deserialize(json);
+      return JsonMapper.deserialize(json.encode(mJson));
     }
   }
 }

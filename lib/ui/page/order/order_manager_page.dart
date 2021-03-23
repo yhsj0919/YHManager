@@ -40,7 +40,7 @@ class _OrderManagerPageState extends State<OrderManagerPage> {
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           child: ListView.builder(
             // shrinkWrap: true,
-            itemCount: 100,
+            itemCount: 30,
             itemBuilder: _buildItem,
           ),
         ),

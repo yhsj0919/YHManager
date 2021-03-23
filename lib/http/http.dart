@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:flutter/foundation.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'error_interceptor.dart';
 
@@ -47,11 +45,10 @@ class Http {
   /// [receiveTimeout] 接收超时赶时间
   /// [interceptors] 基础拦截器
   Future<void> init({String baseUrl, int connectTimeout, int receiveTimeout, List<Interceptor> interceptors}) async {
-    dio.options = dio.options.copyWith(
-      baseUrl: baseUrl,
-      connectTimeout: connectTimeout,
-      receiveTimeout: receiveTimeout,
-    );
+    dio.options.baseUrl=baseUrl;
+    dio.options.connectTimeout=connectTimeout;
+    dio.options.receiveTimeout=receiveTimeout;
+
     if (interceptors != null && interceptors.isNotEmpty) {
       dio.interceptors.addAll(interceptors);
     }
@@ -86,26 +83,44 @@ class Http {
   }
 
   ///  post
-  Future post(String path, {Map<String, dynamic> params, data, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
+  Future post(String path,
+      {Map<String, dynamic> params, data, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
     Options requestOptions = options ?? Options();
     var response = await dio.post(path,
-        data: data, queryParameters: params, options: requestOptions, cancelToken: cancelToken ?? _cancelToken, onReceiveProgress: onReceiveProgress, onSendProgress: onSendProgress);
+        data: data,
+        queryParameters: params,
+        options: requestOptions,
+        cancelToken: cancelToken ?? _cancelToken,
+        onReceiveProgress: onReceiveProgress,
+        onSendProgress: onSendProgress);
     return response.data;
   }
 
   ///  put 操作
-  Future put(String path, {data, Map<String, dynamic> params, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
+  Future put(String path,
+      {data, Map<String, dynamic> params, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
     Options requestOptions = options ?? Options();
     var response = await dio.put(path,
-        data: data, queryParameters: params, options: requestOptions, cancelToken: cancelToken ?? _cancelToken, onSendProgress: onSendProgress, onReceiveProgress: onReceiveProgress);
+        data: data,
+        queryParameters: params,
+        options: requestOptions,
+        cancelToken: cancelToken ?? _cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress);
     return response.data;
   }
 
   ///  patch
-  Future patch(String path, {data, Map<String, dynamic> params, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
+  Future patch(String path,
+      {data, Map<String, dynamic> params, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
     Options requestOptions = options ?? Options();
     var response = await dio.patch(path,
-        data: data, queryParameters: params, options: requestOptions, cancelToken: cancelToken ?? _cancelToken, onReceiveProgress: onReceiveProgress, onSendProgress: onSendProgress);
+        data: data,
+        queryParameters: params,
+        options: requestOptions,
+        cancelToken: cancelToken ?? _cancelToken,
+        onReceiveProgress: onReceiveProgress,
+        onSendProgress: onSendProgress);
     return response.data;
   }
 
@@ -121,13 +136,14 @@ class Http {
   Future postForm(String path, {Map<String, dynamic> params, Options options, CancelToken cancelToken, ProgressCallback onSendProgress, ProgressCallback onReceiveProgress}) async {
     Options requestOptions = options ?? Options();
 
-    var response =
-        await dio.post(path, data: FormData.fromMap(params), options: requestOptions, cancelToken: cancelToken ?? _cancelToken, onSendProgress: onSendProgress, onReceiveProgress: onReceiveProgress);
+    var response = await dio.post(path,
+        data: FormData.fromMap(params), options: requestOptions, cancelToken: cancelToken ?? _cancelToken, onSendProgress: onSendProgress, onReceiveProgress: onReceiveProgress);
     return response.data;
   }
 
   ///  download 下载
-  Future download(String path, String savePath, {Map<String, dynamic> params, data, bool deleteOnError = true, ProgressCallback onReceiveProgress, Options options, CancelToken cancelToken}) async {
+  Future download(String path, String savePath,
+      {Map<String, dynamic> params, data, bool deleteOnError = true, ProgressCallback onReceiveProgress, Options options, CancelToken cancelToken}) async {
     Options requestOptions = options ?? Options();
 
     var response = await dio.download(path, savePath,
