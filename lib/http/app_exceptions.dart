@@ -103,15 +103,17 @@ class AppException implements Exception {
         break;
       case DioErrorType.other:
         {
+          if (error.error is FileSystemException) {
+            return BadRequestException(-1, "文件读取错误，请检查权限");
+          }
           if (error.message.contains('Insecure HTTP is not allowed by platform')) {
-            return BadRequestException(-1, "平台不允许使用不安全的HTTP,请切换HTTPS");
+            return BadRequestException(-1, "请使用HTTPS请求");
           } else if (error.error is SocketException) {
             return BadRequestException(-1, "无法连接服务器");
           } else {
-            return BadRequestException(-1, "网络异常");
+            return BadRequestException(-1, "未知异常:${error.message}");
           }
         }
-
         break;
       default:
         {

@@ -62,14 +62,16 @@ class _CustomerManagerPageState extends State<CustomerManagerPage> {
           ]),
           AppWidget.empty(height: 12),
           Row(children: [
-            AppText.subtitle("${(random * 100000000).toStringAsFixed(2)}", color: Colors.orange).icon(Icon(Icons.account_balance_wallet, color: Colors.orange, size: 20)).expanded(),
+            AppText.subtitle("${(random * 100000000).toStringAsFixed(2)}", color: Colors.orange)
+                .icon(Icon(Icons.account_balance_wallet, color: Colors.orange, size: 20))
+                .expanded(),
             AppText.subtitle("${(random * 500).toStringAsFixed(2)}", color: Colors.redAccent).icon(Icon(Icons.money_off, color: Colors.redAccent, size: 20)),
             AppWidget.empty(width: 45),
           ]),
           AppWidget.empty(height: 12),
           Row(
             children: [
-              AppText.subtitle("${DateTime.fromMillisecondsSinceEpoch(1610436144555).format('Y-m-d H:i')}"),
+              AppText.subtitle("${DateTime.fromMillisecondsSinceEpoch(1610436144555).format('yyyy-MM-dd')}"),
             ],
           )
         ],

@@ -22,22 +22,20 @@ class AppApi {
 
   //公共请求方法
   static Future<AppRespEntity<T>> _post<T>(String path, {Map<String, dynamic> params}) async {
-    // var cookie = await Http().getCookieManager();
+    var cookie = await Http().getCookieManager();
+    HttpUtils.init(
+      baseUrl: 'http://192.168.3.110:8080',
+      interceptors: [cookie],
+      connectTimeout: 30000,
+    );
 
-    HttpUtils.init(baseUrl: 'http://192.168.3.110:8080',  connectTimeout: 15000);
-    HttpUtils.setHeaders({"MyCustomHeader": "ktor"});
-    try {
-      var resp = await HttpUtils.post(path, data: params);
-
-      AppRespEntity<T> data = AppRespEntity.fromJson(resp);
+    return HttpUtils.post(path, data: params).then((value) {
+      AppRespEntity<T> data = AppRespEntity.fromJson(value);
       if (data.code == 200) {
         return Future.value(data);
       } else {
         return Future.error(data.msg);
       }
-    } catch (e) {
-      print(e.toString());
-      return Future.error(e.toString());
-    }
+    });
   }
 }

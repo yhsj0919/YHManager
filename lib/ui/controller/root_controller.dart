@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:get/get.dart';
+import 'package:manager/api/app_api.dart';
 import 'package:manager/entity/menu_entity.dart';
 
 class RootController extends GetxController {
@@ -77,11 +78,11 @@ class RootController extends GetxController {
     menus.clear();
     menus.addAll(data.map((e) => e.obs).toList());
 
-    // return AppApi.getPermission().then((value) {
-    //   List<MenuEntity> data = value.data;
-    //   menus.clear();
-    //   menus.addAll(data.map((e) => e.obs).toList());
-    // }).catchError((error) {});
+     AppApi.getPermission().then((value) {
+      // List<MenuEntity> data = value.data;
+      // menus.clear();
+      // menus.addAll(data.map((e) => e.obs).toList());
+    }).catchError((error) {});
   }
 
   void openMenu(index, isExpanded) {

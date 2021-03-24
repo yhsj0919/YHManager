@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:manager/http/cookie_storage.dart';
 
 import 'error_interceptor.dart';
 
@@ -33,8 +34,8 @@ class Http {
       dio = Dio(options);
 
       // 添加拦截器
-      dio.interceptors.add(ErrorInterceptor());
       dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+      dio.interceptors.add(ErrorInterceptor());
     }
   }
 
@@ -45,19 +46,18 @@ class Http {
   /// [receiveTimeout] 接收超时赶时间
   /// [interceptors] 基础拦截器
   Future<void> init({String baseUrl, int connectTimeout, int receiveTimeout, List<Interceptor> interceptors}) async {
-    dio.options.baseUrl=baseUrl;
-    dio.options.connectTimeout=connectTimeout;
-    dio.options.receiveTimeout=receiveTimeout;
+    dio.options.baseUrl = baseUrl;
+    dio.options.connectTimeout = connectTimeout;
+    dio.options.receiveTimeout = receiveTimeout;
 
     if (interceptors != null && interceptors.isNotEmpty) {
       dio.interceptors.addAll(interceptors);
     }
   }
 
-  Future<CookieManager> getCookieManager() async {
+  Future<CookieManager> getCookieManager([String storageName]) async {
     //本地管理cookie
-    // var cookiePath = await getApplicationDocumentsDirectory();
-    return CookieManager(PersistCookieJar());
+    return CookieManager(PersistCookieJar(storage: CookieStorage()));
   }
 
   /// 设置headers

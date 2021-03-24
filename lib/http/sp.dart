@@ -12,7 +12,7 @@ class Sp {
   Sp._();
 
   static void init() async {
-    await GetStorage.init().then((value) {
+    GetStorage.init().then((value) {
       if (value) {
         _prefs = GetStorage();
       }
