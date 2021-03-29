@@ -101,7 +101,7 @@ class PermissionPage extends StatelessWidget {
   //子菜单标题
   Widget _buildChildTitle(MenuEntity menu) {
     return ListTile(
-      contentPadding: EdgeInsets.only(left: 20,right: 16),
+      contentPadding: EdgeInsets.only(left: 20, right: 16),
       leading: Icon(Icons.subdirectory_arrow_right),
       title: AppText.title('${menu?.name}'),
       subtitle: AppText.subtitle('${menu?.path}'),
@@ -136,7 +136,6 @@ class PermissionPage extends StatelessWidget {
     menuEntity.parent = parent?.id;
     var dialog = Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
-      width: 400,
       child: Form(
         key: controller.formKey,
         child: Column(
@@ -144,6 +143,7 @@ class PermissionPage extends StatelessWidget {
             AppText.textField(label: '父级', text: parent?.name ?? '', enable: false).showBy(parent != null),
             AppWidget.empty(height: 16).showBy(parent != null),
             AppText.textField(
+                width: 300,
                 label: "名称",
                 validator: (value) {
                   return emptyValidator(value, "名称不可为空");
@@ -152,9 +152,14 @@ class PermissionPage extends StatelessWidget {
                   menuEntity.name = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(label: '图标', onChanged: (value) {}),
+            AppText.textField(
+              width: 300,
+              label: '图标',
+              onChanged: (value) {},
+            ),
             AppWidget.empty(height: 16),
             AppText.textField(
+                width: 300,
                 label: '类型',
                 inputType: TextInputType.number,
                 validator: (value) {
@@ -165,6 +170,7 @@ class PermissionPage extends StatelessWidget {
                 }),
             AppWidget.empty(height: 16),
             AppText.textField(
+                width: 300,
                 label: '权重',
                 validator: (value) {
                   return emptyValidator(value, "权重不可为空");
@@ -175,6 +181,7 @@ class PermissionPage extends StatelessWidget {
                 }),
             AppWidget.empty(height: 16),
             AppText.textField(
+                width: 300,
                 label: '路径',
                 validator: (value) {
                   return emptyValidator(value, "路径不可为空");
@@ -193,7 +200,7 @@ class PermissionPage extends StatelessWidget {
       barrierDismissible: false,
       content: dialog,
       radius: 10,
-      cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40),
+      cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40, radius: 30,margin: EdgeInsets.only(right: 16)),
       confirm: AppButton.button2("确定", width: 80, height: 40, onTap: (startLoading, stopLoading, btnState) {
         if (btnState == ButtonState.None) {
           startLoading();

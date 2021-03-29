@@ -11,13 +11,13 @@ class AppButton {
 
   static Widget button(String text,
       {VoidCallback onTap,
-        double width,
-        double height,
-        Color background: Colors.blue,
-        Color textColor: Colors.white,
-        EdgeInsetsGeometry padding,
-        EdgeInsetsGeometry margin,
-        double radius: 8}) {
+      double width,
+      double height,
+      Color background: Colors.blue,
+      Color textColor: Colors.white,
+      EdgeInsetsGeometry padding,
+      EdgeInsetsGeometry margin,
+      double radius: 8}) {
     return Container(
       width: width,
       height: height,
@@ -37,13 +37,13 @@ class AppButton {
 
   static Widget iconButton(Widget icon, String text,
       {VoidCallback onTap,
-        double width,
-        double height,
-        Color background: Colors.blue,
-        Color textColor: Colors.white,
-        EdgeInsetsGeometry padding,
-        EdgeInsetsGeometry margin,
-        double radius: 8}) {
+      double width,
+      double height,
+      Color background: Colors.blue,
+      Color textColor: Colors.white,
+      EdgeInsetsGeometry padding,
+      EdgeInsetsGeometry margin,
+      double radius: 8}) {
     return Container(
       width: width,
       height: height,
@@ -65,13 +65,13 @@ class AppButton {
 
   static Widget button2(String text,
       {double width,
-        double height: 50,
-        Color background,
-        Color textColor: Colors.white,
-        EdgeInsetsGeometry padding,
-        EdgeInsetsGeometry margin,
-        double radius: 50,
-        ArgonButtonTap onTap}) {
+      double height: 50,
+      Color background,
+      Color textColor: Colors.white,
+      EdgeInsetsGeometry padding,
+      EdgeInsetsGeometry margin,
+      double radius: 50,
+      ArgonButtonTap onTap}) {
     return Container(
       margin: margin,
       child: ArgonButton(
@@ -91,13 +91,16 @@ class AppButton {
     );
   }
 
-  static Widget textButton(String text, {VoidCallback onTap, double width, double height, Color background, Color textColor, EdgeInsetsGeometry margin}) {
+  static Widget textButton(String text, {VoidCallback onTap, double width, double height, Color background, Color textColor, EdgeInsetsGeometry margin, double radius: 8}) {
     return Container(
       height: height,
       width: width,
       margin: margin,
       child: TextButton(
         onPressed: onTap,
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(AppShape.circular(radius: radius)),
+        ),
         child: AppText.button(text, color: textColor),
       ),
     );

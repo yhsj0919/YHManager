@@ -28,9 +28,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  get: ^4.0.0-nullsafety.2
-  dio: ^4.0.0-prev3
-  dio_cookie_manager: ^2.0.0-prev1
+  get: ^4.1.1
+  dio: ^4.0.0
+  dio_cookie_manager: ^2.0.0
 #  path_provider: ^2.0.1
   get_storage:
     git:
@@ -43,7 +43,7 @@ dependencies:
   #html解析
   xpath_parse: ^1.0.2
   #json解析
-  dart_json_mapper: ^2.0.5
+  dart_json_mapper: ^2.0.6
   #  #表格
 #  pluto_grid: ^1.1.0
   #时间格式化

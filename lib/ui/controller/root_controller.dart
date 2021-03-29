@@ -18,6 +18,19 @@ class RootController extends GetxController {
       ],
     },
     {
+      "name": "管理",
+      "child": [
+        {
+          "name": "公司",
+          "path": "/company",
+        },
+        {
+          "name": "权限",
+          "path": "/permission",
+        }
+      ],
+    },
+    {
       "name": "销售",
       "child": [
         {
