@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:manager/ui/page/company/company_manager_page.dart';
 import 'package:manager/ui/page/customer/customer_manager_page.dart';
 import 'package:manager/ui/page/error/not_found_page.dart';
 import 'package:manager/ui/page/error/server_error_page.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String Goods = "/goods";
   static const String Order = "/order";
   static const String Customer = "/customer";
+  static const String Company = "/company";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage()),
@@ -61,6 +63,9 @@ class Routes {
         break;
       case Customer:
         return GetPageRoute(page: () => CustomerManagerPage(), parameter: arguments);
+        break;
+      case Company:
+        return GetPageRoute(page: () => CompanyManagerPage(), parameter: arguments);
         break;
       case Error500:
         return GetPageRoute(page: () => ServerErrorPage());

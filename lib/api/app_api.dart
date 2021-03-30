@@ -1,4 +1,5 @@
 import 'package:manager/entity/app_resp_entity.dart';
+import 'package:manager/entity/company_entity.dart';
 import 'package:manager/entity/menu_entity.dart';
 import 'package:manager/entity/user_entity.dart';
 import 'package:manager/http/http.dart';
@@ -18,6 +19,16 @@ class AppApi {
   //添加权限
   static Future<AppRespEntity<List<MenuEntity>>> addPermission({Map<String, dynamic> param}) {
     return _post<List<MenuEntity>>("/admin/addPermission", params: param ?? {});
+  }
+
+  //获取公司
+  static Future<AppRespEntity<List<CompanyEntity>>> getCompany({Map<String, dynamic> param}) {
+    return _post<List<CompanyEntity>>("/company/getCompany", params: param ?? {});
+  }
+
+  //添加公司
+  static Future<AppRespEntity<CompanyEntity>> addCompany({Map<String, dynamic> param}) {
+    return _post<CompanyEntity>("/company/addCompany", params: param ?? {});
   }
 
   //公共请求方法

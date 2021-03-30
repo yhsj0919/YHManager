@@ -7,7 +7,7 @@ extension WidgetExtension on Widget {
   Widget icon(Widget icon) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [icon ?? Container(), this],
+      children: [icon ?? Container(), Container(width: 8), this],
     );
   }
 
