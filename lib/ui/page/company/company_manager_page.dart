@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/company_entity.dart';
@@ -41,7 +42,11 @@ class CompanyManagerPage extends StatelessWidget {
         height: context.height,
         color: Colors.black12,
       ).isMobile(def: Container()),
-      CompanyDetailPage()
+      Expanded(
+          child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Obx(() => controller.currentCompany.value != null ? CompanyDetailPage() : Container()),
+      )).isMobile(def: Container()),
     ]);
   }
 
@@ -49,7 +54,9 @@ class CompanyManagerPage extends StatelessWidget {
     return BlurWidget(
       color: Colors.white.withAlpha(200),
       elevation: 0,
-      onTap: () {},
+      onTap: () {
+        controller.detail(company);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

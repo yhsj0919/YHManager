@@ -9,6 +9,8 @@ class CompanyController extends GetxController with StateMixin<List<CompanyEntit
   final formKey = GlobalKey<FormState>();
   List<CompanyEntity> companies = List.empty(growable: true);
 
+  Rx<CompanyEntity> currentCompany = Rx(null);
+
   @override
   void onInit() {
     super.onInit();
@@ -38,5 +40,9 @@ class CompanyController extends GetxController with StateMixin<List<CompanyEntit
     } else {
       return Future.value("");
     }
+  }
+
+  void detail(CompanyEntity company) {
+    currentCompany.value = company;
   }
 }

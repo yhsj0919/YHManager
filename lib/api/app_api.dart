@@ -6,6 +6,8 @@ import 'package:manager/http/http.dart';
 import 'package:manager/http/http_utils.dart';
 
 class AppApi {
+  static var _init = false;
+
   //登录
   static Future login(Map<String, String> params) {
     return _post<UserEntity>("/admin/login", params: params);
@@ -33,12 +35,15 @@ class AppApi {
 
   //公共请求方法
   static Future<AppRespEntity<T>> _post<T>(String path, {Map<String, dynamic> params}) async {
-    var cookie = await Http().getCookieManager();
-    HttpUtils.init(
-      baseUrl: 'http://192.168.3.110:8080',
-      interceptors: [cookie],
-      connectTimeout: 30000,
-    );
+    if (!_init) {
+      var cookie = await Http().getCookieManager();
+      HttpUtils.init(
+        baseUrl: 'http://192.168.3.110:8080',
+        interceptors: [cookie],
+        connectTimeout: 30000,
+      );
+      _init = true;
+    }
 
     return HttpUtils.post(path, data: params).then((value) {
       AppRespEntity<T> data = AppRespEntity.fromJson(value);

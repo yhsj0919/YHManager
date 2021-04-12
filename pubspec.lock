@@ -189,7 +189,7 @@ packages:
       name: dart_json_mapper
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   dart_style:
     dependency: transitive
     description:
@@ -269,16 +269,14 @@ packages:
       name: get
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.4"
   get_storage:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d11968803225cfd7aada66cd5affd31da4c01a8c
-      url: "https://github.com/jonataslaw/get_storage"
-    source: git
-    version: "2.0.1"
+      name: get_storage
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.2"
   glob:
     dependency: transitive
     description:
@@ -433,13 +431,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.0"
-  platform_info:
-    dependency: transitive
-    description:
-      name: platform_info
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.0-nullsafety.2"
   plugin_platform_interface:
     dependency: transitive
     description:

@@ -41,7 +41,7 @@ class AppButton {
       double height,
       Color background: Colors.blue,
       Color textColor: Colors.white,
-      EdgeInsetsGeometry padding,
+      // EdgeInsetsGeometry padding,
       EdgeInsetsGeometry margin,
       double radius: 8}) {
     return Container(
@@ -51,7 +51,7 @@ class AppButton {
       child: ElevatedButton.icon(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(2),
-          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 8)),
+          // padding: MaterialStateProperty.all(EdgeInsets.all(8)),
           backgroundColor: MaterialStateProperty.all(background),
           shape: MaterialStateProperty.all(AppShape.circular(radius: radius)),
           textStyle: MaterialStateProperty.all(TextStyle(color: textColor)),

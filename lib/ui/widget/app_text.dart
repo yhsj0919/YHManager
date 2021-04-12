@@ -92,8 +92,8 @@ class AppText {
   }) {
     return Container(
       width: width,
-      height: height,
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      height: height ?? 40,
+      margin: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
       child: TextFormField(
         initialValue: text ?? '',
         onChanged: onChanged,
