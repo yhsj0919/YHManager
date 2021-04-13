@@ -24,15 +24,15 @@ class AppText {
     return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
-  static Widget title(String data, {double size = 21, Color color}) {
+  static Widget title(String data, {double size = 30, Color color: Colors.black}) {
     return Text(data, style: TextStyle(fontSize: size, color: color));
   }
 
-  static Widget subtitle(String data, {double size = 17, Color color, int maxLines}) {
+  static Widget subtitle(String data, {double size = 20, Color color: Colors.black, int maxLines}) {
     return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
-  static Widget body(String data, {double size = 15, Color color, int maxLines}) {
+  static Widget body(String data, {double size = 15, Color color: Colors.black, int maxLines}) {
     return Text(data, style: TextStyle(fontSize: size, color: color), maxLines: maxLines);
   }
 
@@ -92,8 +92,7 @@ class AppText {
   }) {
     return Container(
       width: width,
-      height: height ?? 40,
-      margin: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      height: height ?? 35,
       child: TextFormField(
         initialValue: text ?? '',
         onChanged: onChanged,
@@ -107,9 +106,8 @@ class AppText {
         maxLines: 1,
         enabled: enable,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-          labelText: label,
-          border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(10))),
+          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(0))),
           hintText: hint ?? '',
           hintStyle: TextStyle(color: Colors.grey),
           errorText: error,

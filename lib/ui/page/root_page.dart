@@ -15,7 +15,7 @@ class RootPage extends StatelessWidget {
     return Scaffold(
       appBar: BlurAppBar(
         excludeHeaderSemantics: false,
-        title: AppText.title("管理系统"),
+        title: AppText.subtitle("管理系统"),
         // bottom: PreferredSize(
         //   child: Container(
         //     margin: EdgeInsets.only(left: 75, bottom: 16),

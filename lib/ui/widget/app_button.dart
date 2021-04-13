@@ -11,56 +11,55 @@ class AppButton {
 
   static Widget button(String text,
       {VoidCallback onTap,
-      double width,
-      double height,
-      Color background: Colors.blue,
-      Color textColor: Colors.white,
+      double width: 90,
+      double height: 35,
+      Color background,
+      Color textColor: Colors.black,
       EdgeInsetsGeometry padding,
       EdgeInsetsGeometry margin,
-      double radius: 8}) {
+      double radius: 0}) {
     return Container(
       width: width,
       height: height,
       margin: margin,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.all(2),
-          backgroundColor: MaterialStateProperty.all(background),
-          shape: MaterialStateProperty.all(AppShape.circular(radius: radius)),
-          textStyle: MaterialStateProperty.all(TextStyle(color: textColor)),
-        ),
+      child: MaterialButton(
+        textColor: textColor,
+        color: background ?? Color(0xffcccccc),
+        shape: AppShape.circular(radius: radius),
+        elevation: 0,
         onPressed: onTap,
         child: AppText.button(text),
       ),
     );
   }
 
-  static Widget iconButton(Widget icon, String text,
-      {VoidCallback onTap,
-      double width,
-      double height,
-      Color background: Colors.blue,
-      Color textColor: Colors.white,
-      // EdgeInsetsGeometry padding,
-      EdgeInsetsGeometry margin,
-      double radius: 8}) {
+  static Widget iconButton(
+    Widget icon,
+    String text, {
+    VoidCallback onTap,
+    double width: 90,
+    double height: 35,
+    Color background,
+    Color textColor: Colors.black,
+    EdgeInsetsGeometry margin,
+    double radius: 0,
+  }) {
     return Container(
-      width: width,
-      height: height,
-      margin: margin,
-      child: ElevatedButton.icon(
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.all(2),
-          // padding: MaterialStateProperty.all(EdgeInsets.all(8)),
-          backgroundColor: MaterialStateProperty.all(background),
-          shape: MaterialStateProperty.all(AppShape.circular(radius: radius)),
-          textStyle: MaterialStateProperty.all(TextStyle(color: textColor)),
-        ),
-        onPressed: onTap,
-        label: AppText.button(text),
-        icon: icon,
-      ),
-    );
+        width: width,
+        height: height,
+        margin: margin,
+        child: MaterialButton(
+          elevation: 0,
+          padding: EdgeInsets.symmetric(horizontal: 4),
+          color: background ?? Color(0xffcccccc),
+          textColor: textColor,
+          shape: AppShape.circular(radius: radius),
+          onPressed: onTap,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [icon ?? Container(), AppText.button(text)],
+          ),
+        ));
   }
 
   static Widget button2(String text,
@@ -70,7 +69,7 @@ class AppButton {
       Color textColor: Colors.white,
       EdgeInsetsGeometry padding,
       EdgeInsetsGeometry margin,
-      double radius: 50,
+      double radius: 10,
       ArgonButtonTap onTap}) {
     return Container(
       margin: margin,

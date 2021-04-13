@@ -23,8 +23,14 @@ class _OrderManagerPageState extends State<OrderManagerPage> {
             IconButton(icon: Icon(Icons.refresh), onPressed: () {}),
           ],
           children: [
-            AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40),
-            AppText.textField(label: '手机号', width: 280, fontSize: 14, height: 40),
+            AppText.textField(
+              label: '用户名',
+              width: 200.0.isMobile(def: double.infinity),
+            ),
+            AppText.textField(
+              label: '手机号',
+              width: 200.0.isMobile(def: double.infinity),
+            ),
           ],
         ),
       ),

@@ -716,10 +716,12 @@ class _BlurAppBarState extends State<BlurAppBar> {
         ? widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor
         : widget.backgroundColor ?? appBarTheme.backgroundColor ?? (colorScheme.brightness == Brightness.dark ? colorScheme.surface : colorScheme.primary);
 
-    final Color foregroundColor = widget.foregroundColor ?? appBarTheme.foregroundColor ?? (colorScheme.brightness == Brightness.dark ? colorScheme.onSurface : colorScheme.onPrimary);
+    final Color foregroundColor =
+        widget.foregroundColor ?? appBarTheme.foregroundColor ?? (colorScheme.brightness == Brightness.dark ? colorScheme.onSurface : colorScheme.onPrimary);
 
-    IconThemeData overallIconTheme =
-        backwardsCompatibility ? widget.iconTheme ?? appBarTheme.iconTheme ?? theme.primaryIconTheme : widget.iconTheme ?? appBarTheme.iconTheme ?? theme.iconTheme.copyWith(color: foregroundColor);
+    IconThemeData overallIconTheme = backwardsCompatibility
+        ? widget.iconTheme ?? appBarTheme.iconTheme ?? theme.primaryIconTheme
+        : widget.iconTheme ?? appBarTheme.iconTheme ?? theme.iconTheme.copyWith(color: foregroundColor);
 
     IconThemeData actionsIconTheme = widget.actionsIconTheme ?? appBarTheme.actionsIconTheme ?? overallIconTheme;
 
@@ -794,12 +796,6 @@ class _BlurAppBarState extends State<BlurAppBar> {
         overflow: TextOverflow.ellipsis,
         child: title,
       );
-
-      // Set maximum text scale factor to [_kMaxTitleTextScaleFactor] for the
-      // title to keep the visual hierarchy the same even with larger font
-      // sizes. To opt out, wrap the [title] widget in a [MediaQuery] widget
-      // with [MediaQueryData.textScaleFactor] set to
-      // `MediaQuery.textScaleFactorOf(context)`.
       final MediaQueryData mediaQueryData = MediaQuery.of(context);
       title = MediaQuery(
         data: mediaQueryData.copyWith(

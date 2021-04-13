@@ -10,27 +10,27 @@ class AppApi {
 
   //登录
   static Future login(Map<String, String> params) {
-    return _post<UserEntity>("/admin/login", params: params);
+    return _post<UserEntity>("/login", params: params);
   }
 
   //获取权限
   static Future<AppRespEntity<List<MenuEntity>>> getPermission({Map<String, dynamic> param}) {
-    return _post<List<MenuEntity>>("/admin/getPermission", params: param ?? {});
+    return _post<List<MenuEntity>>("/permission/get", params: param ?? {});
   }
 
   //添加权限
   static Future<AppRespEntity<List<MenuEntity>>> addPermission({Map<String, dynamic> param}) {
-    return _post<List<MenuEntity>>("/admin/addPermission", params: param ?? {});
+    return _post<List<MenuEntity>>("/permission/add", params: param ?? {});
   }
 
   //获取公司
   static Future<AppRespEntity<List<CompanyEntity>>> getCompany({Map<String, dynamic> param}) {
-    return _post<List<CompanyEntity>>("/company/getCompany", params: param ?? {});
+    return _post<List<CompanyEntity>>("/company/get", params: param ?? {});
   }
 
   //添加公司
   static Future<AppRespEntity<CompanyEntity>> addCompany({Map<String, dynamic> param}) {
-    return _post<CompanyEntity>("/company/addCompany", params: param ?? {});
+    return _post<CompanyEntity>("/company/add", params: param ?? {});
   }
 
   //公共请求方法

@@ -61,15 +61,15 @@ class CompanyManagerPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            AppText.title(company.name).expanded(),
-            AppText.subtitle(DateTime.fromMillisecondsSinceEpoch(company.expirationTime).format('yyyy-MM-dd'),
+            AppText.subtitle(company.name).expanded(),
+            AppText.body(DateTime.fromMillisecondsSinceEpoch(company.expirationTime).format('yyyy-MM-dd'),
                 color: DateTime.now().millisecondsSinceEpoch <= company.expirationTime ? Colors.green : Colors.redAccent),
             _popMenu(),
           ]),
-          AppWidget.empty(height: 8),
-          AppText.subtitle("${company.address ?? ''}").icon(FaIcon(FontAwesomeIcons.mapSigns, size: 18)),
+          AppWidget.spanVertical5(),
+          AppText.body("${company.address ?? ''}").icon(FaIcon(FontAwesomeIcons.mapSigns, size: 18)),
         ],
-      ).paddingOnly(left: 16, top: 8, bottom: 16),
+      ).paddingOnly(left: 25, top: 10, bottom: 10, right: 5),
       border: Border(
         bottom: BorderSide(
           width: 1,
@@ -83,8 +83,9 @@ class CompanyManagerPage extends StatelessWidget {
     var menu = {"编辑": Icons.edit, "删除": Icons.delete};
     return PopupMenuButton(
       padding: EdgeInsets.all(0),
+      // elevation: 2,
       tooltip: '更多',
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0))),
       itemBuilder: (BuildContext context) {
         return menu.keys
             .map(
@@ -92,10 +93,7 @@ class CompanyManagerPage extends StatelessWidget {
                 value: e,
                 child: Wrap(
                   spacing: 10,
-                  children: [
-                    Icon(menu[e]),
-                    AppText.body(e),
-                  ],
+                  children: [Icon(menu[e]), AppText.body(e)],
                 ),
               ),
             )

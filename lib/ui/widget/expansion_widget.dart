@@ -89,7 +89,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
 
   Widget _buildChildren(BuildContext context, Widget child) {
     return BlurWidget(
-      radius: 10,
+      radius: 0,
       // shadowColor: Colors.redAccent,
       elevation: 0,
       borderWidth: 1,
@@ -101,7 +101,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+            padding: EdgeInsets.only(left: 20, top: 8, bottom: 8),
             child: Row(
               children: [
                 Expanded(child: widget.title),
@@ -126,7 +126,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
               alignment: widget.expandedAlignment ?? Alignment.center,
               heightFactor: _heightFactor.value,
               child: Padding(
-                padding: EdgeInsets.only(left: 8, right: 8, bottom: 8),
+                padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: child,
               ),
             ),
@@ -145,6 +145,8 @@ class _ExpansionWidgetState extends State<ExpansionWidget> with SingleTickerProv
       child: TickerMode(
         child: Wrap(
           alignment: WrapAlignment.start,
+          spacing: 10,
+          runSpacing: 15,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: widget.children,
         ),
