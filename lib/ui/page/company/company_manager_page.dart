@@ -3,7 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/company_entity.dart';
-import 'package:manager/ui/controller/company_controller.dart';
+import 'file:///D:/Server/YHManager/lib/ui/controller/company/company_controller.dart';
+import 'package:manager/ui/widget/AppTextField.dart';
 import 'package:manager/ui/widget/argon_buttons_flutter.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
 import 'package:manager/ui/widget/widget.dart';
@@ -45,7 +46,7 @@ class CompanyManagerPage extends StatelessWidget {
       Expanded(
           child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Obx(() => controller.currentCompany.value != null ? CompanyDetailPage() : Container()),
+        child: Obx(() => controller.companyDetail.value ?? Container()),
       )).isMobile(def: Container()),
     ]);
   }
@@ -55,10 +56,10 @@ class CompanyManagerPage extends StatelessWidget {
       color: Colors.white.withAlpha(200),
       elevation: 0,
       onTap: () {
-        controller.detail(company);
+        controller.companyDetail.value = CompanyDetailPage(company);
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: AppWidget.column(
+        padding: 0,
         children: [
           Row(children: [
             AppText.subtitle(company.name).expanded(),
@@ -67,9 +68,9 @@ class CompanyManagerPage extends StatelessWidget {
             _popMenu(),
           ]),
           AppWidget.spanVertical5(),
-          AppText.body("${company.address ?? ''}").icon(FaIcon(FontAwesomeIcons.mapSigns, size: 18)),
+          AppText.body("${company.address ?? ''}").icon(FaIcon(FontAwesomeIcons.mapSigns, size: 15)),
         ],
-      ).paddingOnly(left: 25, top: 10, bottom: 10, right: 5),
+      ).paddingOnly(left: 25, top: 10, bottom: 10, right: 4),
       border: Border(
         bottom: BorderSide(
           width: 1,
@@ -112,7 +113,7 @@ class CompanyManagerPage extends StatelessWidget {
         key: controller.formKey,
         child: Column(
           children: [
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: "名称",
                 validator: (value) {
@@ -122,7 +123,7 @@ class CompanyManagerPage extends StatelessWidget {
                   company.name = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
               width: 300,
               label: '电话',
               validator: (value) {
@@ -133,7 +134,7 @@ class CompanyManagerPage extends StatelessWidget {
               },
             ),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '到期时间',
                 inputType: TextInputType.number,
@@ -144,7 +145,7 @@ class CompanyManagerPage extends StatelessWidget {
                   company.expirationTime = int.tryParse(value) ?? 0;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '经度',
                 validator: (value) {
@@ -155,7 +156,7 @@ class CompanyManagerPage extends StatelessWidget {
                   company.longitude = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '纬度',
                 validator: (value) {
@@ -165,7 +166,7 @@ class CompanyManagerPage extends StatelessWidget {
                   company.latitude = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '地址',
                 validator: (value) {
@@ -175,7 +176,7 @@ class CompanyManagerPage extends StatelessWidget {
                   company.address = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '备注',
                 validator: (value) {

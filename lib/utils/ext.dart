@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 
 /// Map Json扩展方法
 extension WidgetExtension on Widget {
-  Widget icon(Widget icon) {
+  Widget icon(Widget icon, {double padding: 8}) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [icon ?? Container(), Container(width: 8), this],
+      children: [icon ?? Container(), Container(width: padding), Flexible(child: this)],
     );
   }
 

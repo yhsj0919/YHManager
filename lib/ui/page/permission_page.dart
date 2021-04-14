@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/menu_entity.dart';
 import 'package:manager/ui/controller/permission_controller.dart';
+import 'package:manager/ui/widget/AppTextField.dart';
 import 'package:manager/ui/widget/app_button.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/app_widget.dart';
@@ -140,9 +141,9 @@ class PermissionPage extends StatelessWidget {
         key: controller.formKey,
         child: Column(
           children: [
-            AppText.textField(label: '父级', text: parent?.name ?? '', enable: false).showBy(parent != null),
+            AppTextField(label: '父级', text: parent?.name ?? '', enable: false).showBy(parent != null),
             AppWidget.empty(height: 16).showBy(parent != null),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: "名称",
                 validator: (value) {
@@ -152,13 +153,13 @@ class PermissionPage extends StatelessWidget {
                   menuEntity.name = value;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
               width: 300,
               label: '图标',
               onChanged: (value) {},
             ),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '类型',
                 inputType: TextInputType.number,
@@ -169,7 +170,7 @@ class PermissionPage extends StatelessWidget {
                   menuEntity.type = int.tryParse(value) ?? 0;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '权重',
                 validator: (value) {
@@ -180,7 +181,7 @@ class PermissionPage extends StatelessWidget {
                   menuEntity.weight = int.tryParse(value) ?? 0;
                 }),
             AppWidget.empty(height: 16),
-            AppText.textField(
+            AppTextField(
                 width: 300,
                 label: '路径',
                 validator: (value) {

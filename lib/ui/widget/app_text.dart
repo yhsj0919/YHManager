@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manager/ui/widget/widget.dart';
 
 class AppText {
   AppText._();
@@ -73,49 +74,6 @@ class AppText {
     );
   }
 
-  static Widget textField({
-    String text,
-    double width: 200,
-    double height,
-    double fontSize,
-    ValueChanged<String> onChanged,
-    FormFieldSetter<String> onSaved,
-    FormFieldValidator<String> validator,
-    AutovalidateMode autoValidateMode,
-    TextInputType inputType,
-    TextStyle style,
-    bool enable,
-    String label,
-    String hint,
-    String error,
-    String help,
-  }) {
-    return Container(
-      width: width,
-      height: height ?? 35,
-      child: TextFormField(
-        initialValue: text ?? '',
-        onChanged: onChanged,
-        onSaved: onSaved,
-        validator: validator,
-        autovalidateMode: autoValidateMode,
-        autofocus: false,
-        focusNode: FocusNode(canRequestFocus: false),
-        keyboardType: inputType,
-        style: style ?? TextStyle(fontSize: fontSize),
-        maxLines: 1,
-        enabled: enable,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
-          border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(0))),
-          hintText: hint ?? '',
-          hintStyle: TextStyle(color: Colors.grey),
-          errorText: error,
-          errorMaxLines: 1,
-          helperText: help,
-          helperMaxLines: 1,
-        ),
-      ),
-    );
-  }
+
+
 }

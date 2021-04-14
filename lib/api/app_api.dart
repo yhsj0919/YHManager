@@ -6,6 +6,8 @@ import 'package:manager/http/http.dart';
 import 'package:manager/http/http_utils.dart';
 
 class AppApi {
+  AppApi._();
+
   static var _init = false;
 
   //登录
@@ -31,6 +33,16 @@ class AppApi {
   //添加公司
   static Future<AppRespEntity<CompanyEntity>> addCompany({Map<String, dynamic> param}) {
     return _post<CompanyEntity>("/company/add", params: param ?? {});
+  }
+
+  //获取管理员
+  static Future<AppRespEntity<UserEntity>> getCompanyAdmin({Map<String, dynamic> param}) {
+    return _post<UserEntity>("/company/admin/get", params: param ?? {});
+  }
+
+  //设置管理员
+  static Future<AppRespEntity<UserEntity>> setCompanyAdmin({Map<String, dynamic> param}) {
+    return _post<UserEntity>("/company/admin/set", params: param ?? {});
   }
 
   //公共请求方法

@@ -157,6 +157,7 @@ class BlurAppBar extends StatefulWidget implements PreferredSizeWidget {
   BlurAppBar({
     Key key,
     this.leading,
+    this.tooltip,
     this.automaticallyImplyLeading = true,
     this.title,
     this.actions,
@@ -239,6 +240,8 @@ class BlurAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///  * [Scaffold.appBar], in which an [BlurAppBar] is usually placed.
   ///  * [Scaffold.drawer], in which the [Drawer] is usually placed.
   final Widget leading;
+
+  final String tooltip;
 
   /// {@template flutter.material.appbar.automaticallyImplyLeading}
   /// Controls whether we should try to imply the leading widget if null.
@@ -753,7 +756,7 @@ class _BlurAppBarState extends State<BlurAppBar> {
           // icon: const Icon(Icons.menu),
           icon: leading ?? const Icon(Icons.menu),
           onPressed: _handleDrawerButton,
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          tooltip: widget.tooltip ?? MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
       } else {
         if (!hasEndDrawer && canPop) leading = useCloseButton ? const CloseButton() : const BackButton();

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manager/ui/widget/AppTextField.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
 import 'package:manager/ui/widget/widget.dart';
 
@@ -23,8 +24,8 @@ class _UserManagerPageState extends State<UserManagerPage> {
             IconButton(icon: Icon(Icons.refresh), onPressed: () {}),
           ],
           children: [
-            AppText.textField(label: '用户名', width: 280, fontSize: 14, height: 40),
-            AppText.textField(label: '手机号', width: 280, fontSize: 14, height: 40),
+            AppTextField(label: '用户名', width: 280, fontSize: 14, height: 40),
+            AppTextField(label: '手机号', width: 280, fontSize: 14, height: 40),
           ],
         ),
       ),

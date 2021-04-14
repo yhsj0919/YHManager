@@ -63,29 +63,29 @@ class AppButton {
   }
 
   static Widget button2(String text,
-      {double width,
-      double height: 50,
+      {double width: 90,
+      double height: 35,
       Color background,
-      Color textColor: Colors.white,
+      Color textColor: Colors.black,
       EdgeInsetsGeometry padding,
       EdgeInsetsGeometry margin,
-      double radius: 10,
+      double radius: 0,
       ArgonButtonTap onTap}) {
     return Container(
       margin: margin,
       child: ArgonButton(
         width: width,
         height: height,
-        elevation: 2,
+        elevation: 0,
         focusElevation: 2,
         disabledElevation: 2,
         borderRadius: radius,
-        loader: Container(padding: EdgeInsets.all(10), child: SpinKitRotatingCircle(color: Colors.white)),
+        loader: Container(padding: EdgeInsets.all(10), child: SpinKitRotatingCircle(color: Colors.blue)),
         highlightColor: Colors.black12,
         splashColor: Colors.black12,
         onTap: onTap,
         child: AppText.button(text, color: textColor),
-        color: background ?? Colors.blue,
+        color: background ?? Color(0xffcccccc),
       ),
     );
   }

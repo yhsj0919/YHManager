@@ -14,6 +14,7 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BlurAppBar(
+        tooltip: "菜单",
         excludeHeaderSemantics: false,
         title: AppText.subtitle("管理系统"),
         // bottom: PreferredSize(
@@ -46,6 +47,7 @@ class RootPage extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          DrawerHeader(child: Container()),
           Obx(() => ExpansionPanelList(
                 expansionCallback: controller.openMenu,
                 children: controller.menus

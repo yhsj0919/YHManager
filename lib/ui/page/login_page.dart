@@ -20,7 +20,6 @@ class LoginPage extends StatelessWidget {
               BlurWidget(
                 margin: EdgeInsets.all(40),
                 width: 400,
-                radius: 0,
                 padding: EdgeInsets.all(30),
                 height: 430,
                 alignment: Alignment.center,
@@ -39,6 +38,7 @@ class LoginPage extends StatelessWidget {
                       AppButton.button2(
                         'login'.tr,
                         width: 300,
+                        height: 50,
                         onTap: (startLoading, stopLoading, btnState) {
                           if (btnState == ButtonState.None) {
                             startLoading();

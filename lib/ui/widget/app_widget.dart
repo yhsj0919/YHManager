@@ -17,12 +17,20 @@ class AppWidget {
     );
   }
 
+  static Widget spanVertical15({double height: 15}) {
+    return Container(
+      width: 0,
+      height: height,
+    );
+  }
+
   static Widget spanVertical25({double height: 25}) {
     return Container(
       width: 0,
       height: height,
     );
   }
+
   static Widget spanVertical5({double height: 5}) {
     return Container(
       width: 0,
@@ -30,7 +38,7 @@ class AppWidget {
     );
   }
 
-  static Widget spanVertical55({double height: 55}) {
+  static Widget spanVertical50({double height: 50}) {
     return span(height: height);
   }
 
@@ -76,26 +84,28 @@ class AppWidget {
       {MainAxisSize mainAxisSize = MainAxisSize.max,
       MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
       CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
-      List<Widget> children = const <Widget>[]}) {
+      List<Widget> children = const <Widget>[],
+      double padding:25}) {
     return Column(
       mainAxisSize: mainAxisSize,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       children: children,
-    ).paddingAll(25);
+    ).paddingAll(padding);
   }
 
   static Widget row(
       {MainAxisSize mainAxisSize = MainAxisSize.min,
       MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-      CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
-      List<Widget> children = const <Widget>[]}) {
+      CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.end,
+      List<Widget> children = const <Widget>[],
+      double padding: 0}) {
     return Row(
       mainAxisSize: mainAxisSize,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       children: children,
-    ).paddingAll(25);
+    ).paddingAll(padding);
   }
 
   //首页信息卡片

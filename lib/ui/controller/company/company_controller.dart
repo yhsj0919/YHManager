@@ -4,19 +4,20 @@ import 'package:get/get.dart';
 import 'package:manager/api/app_api.dart';
 import 'package:manager/entity/company_entity.dart';
 import 'package:manager/entity/menu_entity.dart';
+import 'package:manager/entity/user_entity.dart';
 
 class CompanyController extends GetxController with StateMixin<List<CompanyEntity>> {
   final formKey = GlobalKey<FormState>();
+  Rx<Widget> companyDetail = Rx(Container());
   List<CompanyEntity> companies = List.empty(growable: true);
-
-  Rx<CompanyEntity> currentCompany = Rx(null);
 
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(milliseconds: 400)).then((value) => getCompany());
+    Future.delayed(Duration(milliseconds: 0)).then((value) => getCompany());
   }
 
+  /// 获取公司
   Future getCompany() {
     change(companies, status: RxStatus.loading());
     return AppApi.getCompany().then((value) {
@@ -28,6 +29,7 @@ class CompanyController extends GetxController with StateMixin<List<CompanyEntit
     });
   }
 
+  ///添加公司
   Future addCompany(CompanyEntity company) {
     if (formKey.currentState.validate()) {
       ///只有输入的内容符合要求通过才会到达此处
@@ -40,9 +42,5 @@ class CompanyController extends GetxController with StateMixin<List<CompanyEntit
     } else {
       return Future.value("");
     }
-  }
-
-  void detail(CompanyEntity company) {
-    currentCompany.value = company;
   }
 }
