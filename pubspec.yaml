@@ -41,7 +41,7 @@ dependencies:
   #html解析
   xpath_parse: ^1.0.2
   #json解析
-  dart_json_mapper: ^2.0.7
+  dart_json_mapper: ^2.0.8
   #  #表格
 #  pluto_grid: ^1.1.0
   #时间格式化

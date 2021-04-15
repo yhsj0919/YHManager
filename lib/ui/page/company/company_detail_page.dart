@@ -38,6 +38,9 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
   void didUpdateWidget(covariant CompanyDetailPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.company.id != widget.company.id) {
+      setState(() {
+        admin = null;
+      });
       getCompanyAdmin(widget.company.id);
     }
   }
@@ -145,12 +148,13 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
     if (adminKey.currentState.validate()) {
       ///只有输入的内容符合要求通过才会到达此处
       adminKey.currentState.save();
-      var user = UserEntity();
-      user.userName = userName;
-      user.passWord = passWord;
-      user.companyId = widget.company.id;
+
       return AppApi.setCompanyAdmin(
-        param: JsonMapper.toMap(user),
+        param: {
+          "userName": userName,
+          "passWord": passWord,
+          "companyId": widget.company.id,
+        },
       ).then((value) {
         printInfo(info: value.toString());
       });

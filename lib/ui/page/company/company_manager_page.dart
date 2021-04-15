@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:manager/entity/company_entity.dart';
-import 'file:///D:/Server/YHManager/lib/ui/controller/company/company_controller.dart';
+import 'package:manager/ui/controller/company/company_controller.dart';
 import 'package:manager/ui/widget/AppTextField.dart';
 import 'package:manager/ui/widget/argon_buttons_flutter.dart';
 import 'package:manager/ui/widget/blur_widget.dart';

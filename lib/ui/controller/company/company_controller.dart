@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:manager/api/app_api.dart';
 import 'package:manager/entity/company_entity.dart';
-import 'package:manager/entity/menu_entity.dart';
-import 'package:manager/entity/user_entity.dart';
 
 class CompanyController extends GetxController with StateMixin<List<CompanyEntity>> {
   final formKey = GlobalKey<FormState>();
