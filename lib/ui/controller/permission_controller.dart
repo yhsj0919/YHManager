@@ -11,7 +11,7 @@ class PermissionController extends GetxController with StateMixin<List<MenuEntit
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(milliseconds: 400)).then((value) => getPermission());
+    Future.delayed(Duration(milliseconds: 200)).then((value) => getPermission());
   }
 
   Future getPermission() {

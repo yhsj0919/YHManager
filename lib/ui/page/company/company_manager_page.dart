@@ -43,11 +43,7 @@ class CompanyManagerPage extends StatelessWidget {
         height: context.height,
         color: Colors.black12,
       ).isMobile(def: Container()),
-      Expanded(
-          child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Obx(() => controller.companyDetail.value ?? Container()),
-      )).isMobile(def: Container()),
+      Obx(() => Flexible(child: controller.companyDetail.value ?? Container())).isMobile(def: Container()),
     ]);
   }
 
@@ -56,7 +52,14 @@ class CompanyManagerPage extends StatelessWidget {
       color: Colors.white.withAlpha(200),
       elevation: 0,
       onTap: () {
-        controller.companyDetail.value = CompanyDetailPage(company);
+        if (Get.context.isPhone) {
+          Get.to(CompanyDetailPage(
+            company,
+            showAppBar: true,
+          ));
+        } else {
+          controller.companyDetail.value = CompanyDetailPage(company);
+        }
       },
       child: AppWidget.column(
         padding: 0,

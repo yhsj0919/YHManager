@@ -21,8 +21,17 @@ class CompanyDetailController extends GetxController with StateMixin<List<Compan
   ///详情
   void detail(CompanyEntity company) {
     currentCompany.value = company;
-    getCompanyAdmin(company.id);
-  }
+
+
+    Future
+        .delayed(Duration(milliseconds: 1000))
+        .then((e) {
+      admin.value=null;
+      getCompanyAdmin(company.id);
+    });
+
+
+        }
 
   ///获取管理员
   Future getCompanyAdmin(String companyId) {
