@@ -73,7 +73,4 @@ class AppText {
           : null,
     );
   }
-
-
-
 }

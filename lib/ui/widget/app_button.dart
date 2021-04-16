@@ -6,6 +6,8 @@ import 'app_shape.dart';
 import 'app_text.dart';
 import 'argon_buttons_flutter.dart';
 
+typedef FutureTap = Future Function();
+
 class AppButton {
   AppButton._();
 
@@ -62,29 +64,41 @@ class AppButton {
         ));
   }
 
-  static Widget button2(String text,
-      {double width: 90,
+  static Widget button2(
+      {String text,
+      Widget child,
+      double width: 90,
       double height: 35,
       Color background,
+      double elevation: 0,
       Color textColor: Colors.black,
+      Color loadingColor: Colors.blue,
       EdgeInsetsGeometry padding,
       EdgeInsetsGeometry margin,
       double radius: 0,
-      ArgonButtonTap onTap}) {
+      FutureTap onTap}) {
     return Container(
       margin: margin,
       child: ArgonButton(
         width: width,
         height: height,
-        elevation: 0,
+        elevation: elevation,
         focusElevation: 2,
-        disabledElevation: 2,
+        disabledElevation: 0,
         borderRadius: radius,
-        loader: Container(padding: EdgeInsets.all(10), child: SpinKitRotatingCircle(color: Colors.blue)),
+        disabledColor: Color(0xFFBBBBBB),
+        loader: Container(padding: EdgeInsets.all(10), child: SpinKitRotatingCircle(color: loadingColor)),
         highlightColor: Colors.black12,
         splashColor: Colors.black12,
-        onTap: onTap,
-        child: AppText.button(text, color: textColor),
+        onTap: onTap == null
+            ? null
+            : (startLoading, stopLoading, btnState) {
+                if (btnState == ButtonState.None) {
+                  startLoading();
+                  onTap?.call()?.catchError((error) => stopLoading())?.whenComplete(() => stopLoading()) ?? stopLoading();
+                }
+              },
+        child: child == null ? AppText.button(text ?? "", color: textColor) : child,
         color: background ?? Color(0xffcccccc),
       ),
     );

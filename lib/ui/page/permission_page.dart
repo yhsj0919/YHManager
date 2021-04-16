@@ -17,7 +17,7 @@ class PermissionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Container(
-        width: 600.0.isMobile(def: context.width),
+        width: 400.0.isMobile(def: context.width),
         child: Scaffold(
           body: SingleChildScrollView(
             child: controller.obx(
@@ -60,10 +60,10 @@ class PermissionPage extends StatelessWidget {
       leading: Icon(Icons.api, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
       title: Row(
         children: [
-          Expanded(flex: 1, child: AppText.title('${menu?.name}')),
+          Expanded(flex: 1, child: AppText.subtitle('${menu?.name}')),
         ],
       ),
-      subtitle: AppText.subtitle('${menu?.path}'),
+      subtitle: AppText.body('${menu?.path}'),
       trailing: Container(
         width: 100,
         child: Row(
@@ -104,8 +104,8 @@ class PermissionPage extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.only(left: 20, right: 16),
       leading: Icon(Icons.subdirectory_arrow_right),
-      title: AppText.title('${menu?.name}'),
-      subtitle: AppText.subtitle('${menu?.path}'),
+      title: AppText.subtitle('${menu?.name}'),
+      subtitle: AppText.body('${menu?.path}'),
       trailing: Container(
         width: 100,
         child: Row(
@@ -201,15 +201,14 @@ class PermissionPage extends StatelessWidget {
       barrierDismissible: false,
       content: dialog,
       radius: 10,
-      cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40, radius: 30,margin: EdgeInsets.only(right: 16)),
-      confirm: AppButton.button2("确定", width: 80, height: 40, onTap: (startLoading, stopLoading, btnState) {
-        if (btnState == ButtonState.None) {
-          startLoading();
-          controller.addMenu(menuEntity).catchError((error) {
-            stopLoading();
-          }).whenComplete(() => stopLoading());
-        }
-      }),
+      cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40, radius: 30, margin: EdgeInsets.only(right: 16)),
+      confirm: AppButton.button2(
+          text: "确定",
+          width: 80,
+          height: 40,
+          onTap: () {
+            return controller.addMenu(menuEntity);
+          }),
     );
   }
 }

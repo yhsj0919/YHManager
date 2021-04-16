@@ -88,12 +88,9 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
           Form(
               key: adminKey,
               child: Wrap(
-                crossAxisAlignment: WrapCrossAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.start,
                 spacing: 10,
-                runSpacing: 10,
-                // alignment: WrapAlignment.end,
-                // runAlignment: WrapAlignment.end,
-
+                runSpacing: 5,
                 children: [
                   AppTextField(
                       text: admin?.userName ?? "",
@@ -115,15 +112,13 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
                       onSaved: (value) {
                         passWord = value;
                       }),
-                  AppButton.button2("确定", width: 80, onTap: (startLoading, stopLoading, btnState) {
-                    if (btnState == ButtonState.None) {
-                      startLoading();
-                      setCompanyAdmin().catchError((error) {
-                        print(error.toString());
-                        stopLoading();
-                      }).whenComplete(() => stopLoading());
-                    }
-                  }),
+                  AppButton.button2(
+                      text: "确定",
+                      width: 80,
+                      margin: EdgeInsets.only(top: 22),
+                      onTap: () {
+                        return setCompanyAdmin();
+                      }),
                 ],
               )),
           AppWidget.spanVertical25(),

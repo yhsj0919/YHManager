@@ -23,7 +23,7 @@ class AppTextField extends StatefulWidget {
   AppTextField({
     this.text,
     this.width: 200,
-    this.height: 35,
+    this.height,
     this.fontSize,
     this.onChanged,
     this.onSaved,
@@ -44,12 +44,10 @@ class AppTextField extends StatefulWidget {
 
 class _AppTextFieldState extends State<AppTextField> {
   TextEditingController selectionController;
-  String error;
 
   @override
   void didUpdateWidget(covariant AppTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    error = null;
     Future.delayed(Duration(milliseconds: 200)).then((value) {
       selectionController.text = widget.text;
     });
@@ -59,59 +57,45 @@ class _AppTextFieldState extends State<AppTextField> {
   void initState() {
     super.initState();
     selectionController = TextEditingController(text: widget.text);
-    error = widget.error;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: widget.width,
+      // height: widget.height,
+      constraints: BoxConstraints(minHeight: 82),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              AppText.body(widget.label ?? ""),
-              AppWidget.spanHorizontal10(),
-              error == null ? Container() : AppText.body(error ?? "", color: Colors.red, size: 12),
-            ],
-          ),
-          Container(
-            width: widget.width,
-            height: widget.height,
-            child: TextFormField(
-              controller: selectionController,
-              onChanged: widget.onChanged,
-              onSaved: widget.onSaved,
-              validator: (value) {
-                var text = widget.validator(value);
-
-                if (error != text) {
-                  error = text;
-                  Future.delayed(Duration(milliseconds: 0)).then((value) => setState(() {}));
-                }
-                return text;
-              },
-              autovalidateMode: widget.autoValidateMode,
-              autofocus: false,
-              focusNode: FocusNode(canRequestFocus: false),
-              keyboardType: widget.inputType,
-              style: widget.style ?? TextStyle(fontSize: widget.fontSize),
-              maxLines: 1,
-              enabled: widget.enable,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(0))),
-                hintText: widget.hint ?? '',
-                hintStyle: TextStyle(color: Colors.grey),
-                errorText: error,
-                errorStyle: TextStyle(fontSize: 0, height: 0),
-                helperText: widget.help,
-                helperMaxLines: 1,
-              ),
+          AppText.body(widget.label ?? ""),
+          AppWidget.span(height: 2),
+          TextFormField(
+            controller: selectionController,
+            onChanged: widget.onChanged,
+            onSaved: widget.onSaved,
+            validator: widget.validator,
+            autovalidateMode: widget.autoValidateMode,
+            autofocus: false,
+            focusNode: FocusNode(canRequestFocus: false),
+            keyboardType: widget.inputType,
+            style: widget.style ?? TextStyle(fontSize: widget.fontSize),
+            maxLines: 1,
+            enabled: widget.enable,
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 11),
+              border: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.all(Radius.circular(0))),
+              hintText: widget.hint ?? '',
+              hintStyle: TextStyle(color: Colors.grey),
+              errorText: widget.error,
+              errorStyle:TextStyle(fontSize: 12),
+              helperText: widget.help,
+              helperMaxLines: 1,
             ),
-          )
+          ),
+          Flexible(child: Container(),flex: 1,),
         ],
       ),
     );

@@ -3,23 +3,23 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class BlurWidget extends StatefulWidget {
-  Widget child;
-  EdgeInsetsGeometry margin;
-  double width;
-  double minWidth;
-  double height;
-  double minHeight;
-  double radius;
-  Color color;
-  double elevation;
-  Alignment alignment;
-  double blur;
-  Color shadowColor;
-  Color splashColor;
-  ShapeBorder shape;
-  GestureTapCallback onTap;
-  double borderWidth;
-  EdgeInsetsGeometry padding;
+  final Widget child;
+  final EdgeInsetsGeometry margin;
+  final double width;
+  final double minWidth;
+  final double height;
+  final double minHeight;
+  final double radius;
+  final Color color;
+  final double elevation;
+  final Alignment alignment;
+  final double blur;
+  final Color shadowColor;
+  final Color splashColor;
+  final ShapeBorder shape;
+  final GestureTapCallback onTap;
+  final double borderWidth;
+  final EdgeInsetsGeometry padding;
 
   BlurWidget(
       {this.child,
@@ -41,7 +41,7 @@ class BlurWidget extends StatefulWidget {
       this.border,
       this.onTap});
 
-  BoxBorder border;
+  final  BoxBorder border;
 
   @override
   _BlurWidgetState createState() => _BlurWidgetState();
@@ -104,78 +104,3 @@ class _BlurWidgetState extends State<BlurWidget> {
     );
   }
 }
-
-// // ignore: must_be_immutable
-// class BlurWidget extends StatelessWidget {
-//   Widget child;
-//   double padding;
-//   double margin;
-//   double width;
-//   double height;
-//   double radius;
-//   Color color;
-//   double elevation;
-//   Alignment alignment;
-//   double blur;
-//   Color shadowColor;
-//   ShapeBorder shape;
-//   GestureTapCallback onTap;
-//   double borderWidth;
-//
-//   BlurWidget(
-//       {this.child,
-//       this.width,
-//       this.blur: 20,
-//       this.height,
-//       this.margin: 0,
-//       this.padding: 0,
-//       this.elevation: 4,
-//       this.shadowColor,
-//       this.radius: 0,
-//       this.alignment,
-//       this.shape,
-//       this.borderWidth: 0,
-//       this.color: Colors.white38,
-//       this.onTap});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.all(Radius.circular(radius)),
-//         border: Border.all(color: borderWidth == 0 ? Colors.transparent : Color(0xffcccccc), width: borderWidth),
-//         boxShadow: elevation > 0
-//             ? [
-//                 BoxShadow(
-//                     color: shadowColor ?? Colors.black12,
-//                     offset: Offset(0.0, elevation), //阴影xy轴偏移量
-//                     blurRadius: elevation * 2, //阴影模糊程度
-//                     spreadRadius: elevation //阴影扩散程度
-//                     ),
-//               ]
-//             : null,
-//       ),
-//       margin: EdgeInsets.all(margin),
-//       child: ClipRRect(
-//         borderRadius: BorderRadius.all(Radius.circular(radius)),
-//         child: BackdropFilter(
-//           filter: ImageFilter.blur(
-//             sigmaX: blur,
-//             sigmaY: blur,
-//           ),
-//           child: Listener(
-//             onPointerHover: (point) {},
-//             child: Container(
-//               alignment: alignment,
-//               width: width,
-//               height: height,
-//               color: color,
-//               padding: EdgeInsets.all(padding),
-//               child: child,
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

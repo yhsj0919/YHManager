@@ -10,7 +10,6 @@ class GoodsPage extends StatefulWidget {
 class _GoodsPageState extends State<GoodsPage> {
   @override
   Widget build(BuildContext context) {
-    var itemCount = context.responsiveValue(desktop: 8, tablet: 4, mobile: 2);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(context.width, context.height),
@@ -19,37 +18,52 @@ class _GoodsPageState extends State<GoodsPage> {
           actions: [IconButton(icon: Icon(Icons.search), onPressed: () {}), IconButton(icon: Icon(Icons.refresh), onPressed: () {})],
         ),
       ),
-      body: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        itemCount: 10,
-        itemBuilder: _buildItem,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: itemCount, mainAxisSpacing: 20.0, crossAxisSpacing: 20.0, childAspectRatio: context.width / itemCount / 200),
-      ),
+      body: Wrap(
+        spacing: 20,
+        runSpacing: 20,
+        children: List.generate(20, (int index) => _buildItem(context, index)),
+      ).paddingAll(16),
     );
   }
 
   Widget _buildItem(BuildContext context, int index) {
     return BlurWidget(
-      radius: 10,
+      width: 153,
       elevation: 0,
       borderWidth: 1,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppText.subtitle("产品名称").paddingAll(16),
+          AppText.subtitle("产品名称"),
+          AppWidget.spanVertical5(),
           AppWidget.line(),
-          AppText.body("产品名称").paddingAll(8),
-          AppText.body("产品名称").paddingAll(8),
+          AppWidget.spanVertical5(),
+          AppText.body("产品名称"),
+          AppWidget.spanVertical5(),
+          AppText.body("产品名称"),
+          AppWidget.spanVertical5(),
           AppWidget.line(),
-          Row(
+          AppWidget.row(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              IconButton(icon: Icon(Icons.edit), onPressed: () {}),
-              IconButton(icon: Icon(Icons.delete), onPressed: () {}),
+              IconButton(
+                  icon: Icon(
+                    Icons.edit,
+                    size: 18,
+                  ),
+                  onPressed: () {}),
+              IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    size: 18,
+                  ),
+                  onPressed: () {}),
             ],
           )
         ],
-      ),
+      ).paddingOnly(top: 10, left: 10, right: 10),
     );
   }
 }

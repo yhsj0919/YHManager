@@ -16,7 +16,8 @@ class LoginPage extends StatelessWidget {
       body: Obx(() => Stack(
             alignment: Alignment.center,
             children: [
-              Image.network(controller.http_bg.value, width: context.width, height: context.height, fit: BoxFit.cover, errorBuilder: (a, _, s) => getImage(controller.image_bg.value, context)),
+              Image.network(controller.http_bg.value,
+                  width: context.width, height: context.height, fit: BoxFit.cover, errorBuilder: (a, _, s) => getImage(controller.image_bg.value, context)),
               BlurWidget(
                 margin: EdgeInsets.all(40),
                 width: 400,
@@ -36,14 +37,11 @@ class LoginPage extends StatelessWidget {
                       AppText.tip(controller.tip.value, width: 300),
                       Expanded(flex: 1, child: Container()),
                       AppButton.button2(
-                        'login'.tr,
+                        text: 'login'.tr,
                         width: 300,
                         height: 50,
-                        onTap: (startLoading, stopLoading, btnState) {
-                          if (btnState == ButtonState.None) {
-                            startLoading();
-                            controller.login().whenComplete(() => stopLoading());
-                          }
+                        onTap: () {
+                          return controller.login();
                         },
                       ),
                     ],

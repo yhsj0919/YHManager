@@ -163,7 +163,7 @@ class _ArgonButtonState extends State<ArgonButton> with TickerProviderStateMixin
           side: widget.borderSide,
           borderRadius: BorderRadius.circular(widget.roundLoadingShape ? lerpDouble(widget.borderRadius, widget.height / 2, _animation.value) : widget.borderRadius),
         ),
-        child: RaisedButton(
+        child: MaterialButton(
             key: _buttonKey,
             color: widget.color,
             focusColor: widget.focusColor,
@@ -182,10 +182,12 @@ class _ArgonButtonState extends State<ArgonButton> with TickerProviderStateMixin
             disabledElevation: widget.disabledElevation,
             disabledColor: widget.disabledColor,
             disabledTextColor: widget.disabledTextColor,
-            onPressed: () {
-              widget.onTap(() => animateForward(), () => animateReverse(), btn);
-              // btnClicked();
-            },
+            onPressed: widget.onTap == null
+                ? null
+                : () {
+                    widget.onTap(() => animateForward(), () => animateReverse(), btn);
+                    // btnClicked();
+                  },
             child: btn == ButtonState.None ? widget.child : widget.loader),
       ),
     );

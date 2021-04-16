@@ -125,7 +125,7 @@ class CompanyManagerPage extends StatelessWidget {
                 onSaved: (value) {
                   company.name = value;
                 }),
-            AppWidget.empty(height: 16),
+            AppWidget.span(height: 2),
             AppTextField(
               width: 300,
               label: '电话',
@@ -136,7 +136,7 @@ class CompanyManagerPage extends StatelessWidget {
                 company.phone = value;
               },
             ),
-            AppWidget.empty(height: 16),
+            AppWidget.span(height: 2),
             AppTextField(
                 width: 300,
                 label: '到期时间',
@@ -147,7 +147,6 @@ class CompanyManagerPage extends StatelessWidget {
                 onSaved: (value) {
                   company.expirationTime = int.tryParse(value) ?? 0;
                 }),
-            AppWidget.empty(height: 16),
             AppTextField(
                 width: 300,
                 label: '经度',
@@ -158,7 +157,7 @@ class CompanyManagerPage extends StatelessWidget {
                 onChanged: (value) {
                   company.longitude = value;
                 }),
-            AppWidget.empty(height: 16),
+            AppWidget.span(height: 2),
             AppTextField(
                 width: 300,
                 label: '纬度',
@@ -168,7 +167,7 @@ class CompanyManagerPage extends StatelessWidget {
                 onChanged: (value) {
                   company.latitude = value;
                 }),
-            AppWidget.empty(height: 16),
+            AppWidget.span(height: 2),
             AppTextField(
                 width: 300,
                 label: '地址',
@@ -178,7 +177,7 @@ class CompanyManagerPage extends StatelessWidget {
                 onChanged: (value) {
                   company.address = value;
                 }),
-            AppWidget.empty(height: 16),
+            AppWidget.span(height: 2),
             AppTextField(
                 width: 300,
                 label: '备注',
@@ -188,7 +187,6 @@ class CompanyManagerPage extends StatelessWidget {
                 onChanged: (value) {
                   company.note = value;
                 }),
-            AppWidget.empty(height: 16),
           ],
         ),
       ),
@@ -200,15 +198,13 @@ class CompanyManagerPage extends StatelessWidget {
       content: dialog,
       radius: 10,
       cancel: AppButton.textButton("取消", onTap: Get.back, width: 80, height: 40, radius: 30, margin: EdgeInsets.only(right: 16)),
-      confirm: AppButton.button2("确定", width: 80, height: 40, onTap: (startLoading, stopLoading, btnState) {
-        if (btnState == ButtonState.None) {
-          startLoading();
-          controller.addCompany(company).catchError((error) {
-            print(error.toString());
-            stopLoading();
-          }).whenComplete(() => stopLoading());
-        }
-      }),
+      confirm: AppButton.button2(
+          text: "确定",
+          width: 80,
+          height: 40,
+          onTap: () {
+            return controller.addCompany(company);
+          }),
     );
   }
 }

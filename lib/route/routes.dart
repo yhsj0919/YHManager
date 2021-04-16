@@ -13,6 +13,7 @@ import 'package:manager/ui/page/order/order_manager_page.dart';
 import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
 import 'package:manager/ui/page/user/user_manager_page.dart';
+import 'package:manager/ui/page/weigh/weigh_page.dart';
 import 'package:manager/ui/widget/app_text.dart';
 
 class Routes {
@@ -29,6 +30,7 @@ class Routes {
   static const String Order = "/order";
   static const String Customer = "/customer";
   static const String Company = "/company";
+  static const String Weigh = "/weigh";
 
   static List<GetPage> routes = [
     GetPage(name: Login, page: () => LoginPage()),
@@ -66,6 +68,9 @@ class Routes {
         break;
       case Company:
         return GetPageRoute(page: () => CompanyManagerPage(), parameter: arguments);
+        break;
+        case Weigh:
+        return GetPageRoute(page: () => WeighPage(), parameter: arguments);
         break;
       case Error500:
         return GetPageRoute(page: () => ServerErrorPage());

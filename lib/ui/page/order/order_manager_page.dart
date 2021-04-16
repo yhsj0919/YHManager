@@ -39,17 +39,13 @@ class _OrderManagerPageState extends State<OrderManagerPage> {
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16.0.isMobile(def: 8.0)),
         // padding: EdgeInsets.all(2),
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffe5e5e5)),
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: Color(0xffcccccc)),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
         ),
-        child: ClipRRect(
-          // 边界半径（`borderRadius`）属性，圆角的边界半径。
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          child: ListView.builder(
-            // shrinkWrap: true,
-            itemCount: 30,
-            itemBuilder: _buildItem,
-          ),
+        child: ListView.builder(
+          // shrinkWrap: true,
+          itemCount: 30,
+          itemBuilder: _buildItem,
         ),
       ),
     );
