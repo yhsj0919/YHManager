@@ -12,7 +12,7 @@ class CompanyController extends GetxController with StateMixin<List<CompanyEntit
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(milliseconds: 400)).then((value) => getCompany());
+    Future.delayed(Duration(milliseconds: 200)).then((value) => getCompany());
   }
 
   /// 获取公司
