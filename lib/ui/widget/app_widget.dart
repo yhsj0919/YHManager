@@ -1,11 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/ui/widget/app_text.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
 
-import 'app_button.dart';
+import 'AppTextField.dart';
 import 'expansion_widget.dart';
+import 'package:manager/utils/app_ext.dart';
 
 class AppWidget {
   AppWidget._();
@@ -85,7 +88,7 @@ class AppWidget {
       MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
       CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
       List<Widget> children = const <Widget>[],
-      double padding:25}) {
+      double padding: 25}) {
     return Column(
       mainAxisSize: mainAxisSize,
       mainAxisAlignment: mainAxisAlignment,
@@ -163,5 +166,59 @@ class AppWidget {
       ),
       children: children,
     ).paddingOnly(top: 16, left: 16, right: 16);
+  }
+
+  static Widget expansionItemWidget({List<Widget> title: const [], GestureTapCallback onTap, List<Widget> children: const []}) {
+    return ExpansionWidget(
+      expandedAlignment: Alignment.topLeft,
+      minHeight: 50,
+      borderWidth: 0,
+      title: InkWell(
+        onTap: onTap,
+        child: Row(children: title ?? []),
+      ),
+      children: children,
+    );
+  }
+
+  static Widget appScaffold({Widget menu, double baseWidth: 400, Widget left, FloatingActionButton floatingActionButton, Widget center, Widget right}) {
+    return Scaffold(
+      appBar: menu != null
+          ? PreferredSize(
+              preferredSize: Size(double.infinity, 1000),
+              child: menu,
+            )
+          : null,
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16.0.isMobile(def: 8.0)),
+        // padding: EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffcccccc)),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
+        ),
+        child: Row(children: [
+          Container(
+            width: baseWidth.autoValue(condition: Get.width < baseWidth + 200, def: Get.width),
+            child: Scaffold(
+              body: left,
+              floatingActionButton: floatingActionButton,
+            ),
+          ),
+          Container(
+            width: 1,
+            height: Get.height,
+            color: Colors.black12,
+          ).isMobile(def: Container()),
+          Flexible(child: center ?? Container()).autoValue(condition: Get.width < baseWidth + 200, def: Container()),
+          Container(
+            width: baseWidth,
+            child: Scaffold(
+              body: right,
+              floatingActionButton: floatingActionButton,
+            ),
+          ).autoValue(condition: Get.width < 1300 || right == null, def: Container()),
+        ]),
+      ),
+    );
   }
 }

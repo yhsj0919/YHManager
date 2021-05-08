@@ -175,21 +175,21 @@ packages:
       name: cupertino_icons
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   dart_date:
     dependency: "direct main"
     description:
       name: dart_date
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0-nullsafety.0"
+    version: "1.1.0"
   dart_json_mapper:
     dependency: "direct main"
     description:
       name: dart_json_mapper
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.9"
   dart_style:
     dependency: transitive
     description:

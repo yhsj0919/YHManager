@@ -5,7 +5,6 @@ import 'package:manager/ui/page/customer/customer_manager_page.dart';
 import 'package:manager/ui/page/error/not_found_page.dart';
 import 'package:manager/ui/page/error/server_error_page.dart';
 import 'package:manager/ui/page/goods/goods_page.dart';
-
 import 'package:manager/ui/page/home_page.dart';
 import 'package:manager/ui/page/login_page.dart';
 import 'package:manager/ui/page/movie_home_page.dart';
@@ -14,7 +13,6 @@ import 'package:manager/ui/page/permission_page.dart';
 import 'package:manager/ui/page/root_page.dart';
 import 'package:manager/ui/page/user/user_manager_page.dart';
 import 'package:manager/ui/page/weigh/weigh_page.dart';
-import 'package:manager/ui/widget/app_text.dart';
 
 class Routes {
   static const Key = 1;

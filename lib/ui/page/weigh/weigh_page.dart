@@ -6,7 +6,7 @@ import 'package:manager/ui/widget/AppTextField.dart';
 import 'package:manager/ui/widget/widget.dart';
 
 class WeighPage extends StatelessWidget {
-  final leftWidth = 801;
+  final leftWidth = 801.0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class WeighPage extends StatelessWidget {
         width: 800.0.autoValue(condition: context.width < leftWidth, def: context.width),
         child: Scaffold(
           body: AppWidget.column(
-            padding: 25.isMobile(def: 16),
+            padding: 25.0.isMobile(def: 16.0),
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SingleChildScrollView(
@@ -86,8 +86,8 @@ class WeighPage extends StatelessWidget {
 
   Widget buildWeight(text) {
     return Container(
-      width: 168.isMobile(def: 82),
-      height: 100.isMobile(def: 60),
+      width: 168.0.isMobile(def: 82.0),
+      height: 100.0.isMobile(def: 60.0),
       color: Colors.black87,
       alignment: Alignment.center,
       child: Text(

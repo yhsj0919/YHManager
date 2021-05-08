@@ -18,33 +18,25 @@ class CompanyManagerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Container(
-        width: 400.0.isMobile(def: context.width),
-        child: Scaffold(
-          body: controller.obx(
-            (datas) => ListView.builder(
-              itemCount: datas.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _buildItem(datas[index]);
-              },
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {
-              _addDialog();
+    return AppWidget.appScaffold(
+        left: controller.obx(
+          (datas) => ListView.builder(
+            itemCount: datas.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildItem(datas[index]);
             },
           ),
         ),
-      ),
-      Container(
-        width: 1,
-        height: context.height,
-        color: Colors.black12,
-      ).isMobile(def: Container()),
-      Obx(() => Flexible(child: controller.companyDetail.value ?? Container())).isMobile(def: Container()),
-    ]);
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            _addDialog();
+          },
+        ),
+        center: Obx(() => controller.companyDetail.value),
+        right: Container(
+          color: Colors.amber,
+        ));
   }
 
   Widget _buildItem(CompanyEntity company) {

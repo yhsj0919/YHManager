@@ -12,38 +12,12 @@ class CustomerManagerPage extends StatefulWidget {
 class _CustomerManagerPageState extends State<CustomerManagerPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          Container(
-            width: 500.0.autoValue(condition: context.width < 720, def: context.width - 32),
-            margin: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              border: Border.all(color: Color(0xffe5e5e5)),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-            child: ClipRRect(
-              // 边界半径（`borderRadius`）属性，圆角的边界半径。
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              child: ListView.builder(
-                itemCount: 50,
-                itemBuilder: _buildItem,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: BlurWidget(
-              margin: EdgeInsets.only(top: 16, right: 16, bottom: 16),
-              borderWidth: 1,
-              radius: 10,
-              elevation: 0,
-              child: Container(),
-            ),
-          ).showBy(context.width > 720),
-        ],
-      ),
-    );
+    return AppWidget.appScaffold(
+        left: ListView.builder(
+          itemCount: 50,
+          itemBuilder: _buildItem,
+        ),
+        center: Container());
   }
 
   Widget _buildItem(BuildContext context, int index) {
@@ -56,24 +30,24 @@ class _CustomerManagerPageState extends State<CustomerManagerPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            AppText.title("永恒瞬间技术有限公司$index").expanded(),
-            AppText.subtitle("${(random * 5000000).toStringAsFixed(2)}", color: Colors.green).icon(Icon(Icons.money, color: Colors.green, size: 20)),
+            AppText.body("永恒瞬间技术有限公司$index",size: 18).expanded(),
+            AppText.body("${(random * 5000000).toStringAsFixed(2)}", color: Colors.green).icon(Icon(Icons.money, color: Colors.green, size: 20)),
             _popMenu(),
           ]),
           AppWidget.empty(height: 12),
           Row(children: [
-            AppText.subtitle("${(random * 100000000).toStringAsFixed(2)}", color: Colors.orange)
-                .icon(Icon(Icons.account_balance_wallet, color: Colors.orange, size: 20))
-                .expanded(),
-            AppText.subtitle("${(random * 500).toStringAsFixed(2)}", color: Colors.redAccent).icon(Icon(Icons.money_off, color: Colors.redAccent, size: 20)),
+            AppText.body("${(random * 100000000).toStringAsFixed(2)}", color: Colors.orange).icon(Icon(Icons.account_balance_wallet, color: Colors.orange, size: 20)).expanded(),
+            AppText.body("${(random * 500).toStringAsFixed(2)}", color: Colors.redAccent).icon(Icon(Icons.money_off, color: Colors.redAccent, size: 20)),
             AppWidget.empty(width: 45),
           ]),
-          AppWidget.empty(height: 12),
-          Row(
-            children: [
-              AppText.subtitle("${DateTime.fromMillisecondsSinceEpoch(1610436144555).format('yyyy-MM-dd')}"),
-            ],
-          )
+          // AppWidget.empty(height: 12),
+          // Row(
+          //   children: [
+          //     Spacer(),
+          //     AppText.body("${DateTime.fromMillisecondsSinceEpoch(1610436144555).format('yyyy-MM-dd')}"),
+          //     AppWidget.spanHorizontal25(),
+          //   ],
+          // )
         ],
       ).paddingOnly(left: 16, top: 8, bottom: 16),
       border: Border(

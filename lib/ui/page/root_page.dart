@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:manager/route/routes.dart';
 import 'package:manager/ui/controller/root_controller.dart';
 import 'package:manager/ui/widget/app_text.dart';
+import 'package:manager/ui/widget/app_widget.dart';
 import 'package:manager/ui/widget/blur_app_bar.dart';
 import 'package:manager/ui/widget/blur_widget.dart';
 
@@ -17,14 +18,6 @@ class RootPage extends StatelessWidget {
         tooltip: "菜单",
         excludeHeaderSemantics: false,
         title: AppText.subtitle("管理系统"),
-        // bottom: PreferredSize(
-        //   child: Container(
-        //     margin: EdgeInsets.only(left: 75, bottom: 16),
-        //     width: context.width,
-        //     child: AppText.body("页面数据为 Mock 示例数据，非真实数据。", maxLines: 1),
-        //   ),
-        //   preferredSize: Size(context.width, 30),
-        // ),
       ),
       drawer: _drawer(context),
       drawerScrimColor: Colors.transparent,
@@ -44,48 +37,39 @@ class RootPage extends StatelessWidget {
       width: 304.0,
       height: context.height,
       child: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          DrawerHeader(child: Container()),
-          Obx(() => ExpansionPanelList(
-                expansionCallback: controller.openMenu,
-                children: controller.menus
-                    .map(
-                      (item) => ExpansionPanel(
-                        canTapOnHeader: true,
-                        isExpanded: item.value.expanded ?? false,
-                        headerBuilder: (BuildContext context, bool isExpanded) {
-                          return ListTile(
-                            leading: Icon(Icons.dashboard, color: isExpanded ? Theme.of(context).accentColor : Colors.grey),
-                            title: AppText.subtitle('${item.value.name}'),
-                          );
-                        },
-                        body: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: item.value.child?.length ?? 0,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                              contentPadding: EdgeInsets.only(left: 20, right: 16),
+        child: Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              DrawerHeader(child: Container()),
+            ]..addAll(
+                controller.menus.map((item) {
+                  return AppWidget.expansionItemWidget(
+                    title: [
+                      Icon(Icons.dashboard),
+                      AppWidget.spanHorizontal10(),
+                      AppText.body('${item.value.name}'),
+                    ],
+                    children: item.value.child
+                        ?.map((e) => ListTile(
+                              // contentPadding: EdgeInsets.only(left: 20, right: 16),
                               onTap: () {
-                                var route = item.value?.child[index]?.path;
-                                if (controller.route != route) {
-                                  controller.route = route;
+                                if (controller.route != e.path) {
+                                  controller.route = e.path;
                                   Get.offAndToNamed(controller.route, id: Routes.Key);
                                 }
                                 Get.back();
                               },
-                              leading: Icon(Icons.subdirectory_arrow_right),
-                              title: Text('${item.value?.child[index]?.name}'),
-                            );
-                          },
-                        ),
-                      ),
-                    )
-                    .toList(),
-              )),
-        ],
-      )),
+                              // leading: Icon(Icons.subdirectory_arrow_right),
+                              title: Text('${e?.name}'),
+                            ))
+                        ?.toList(),
+                  );
+                }).toList(),
+              ),
+          ),
+        ),
+      ),
     );
   }
 }
